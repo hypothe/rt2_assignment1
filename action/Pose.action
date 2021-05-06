@@ -1,0 +1,12 @@
+# goal
+float32 x
+float32 y
+float32 theta
+---
+# result
+bool reached
+---
+#feedback
+## current pose
+string status
+
