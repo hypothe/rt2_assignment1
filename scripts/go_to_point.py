@@ -138,7 +138,7 @@ def go_to_point(req):
 
 def main():
     global pub_
-    rospy.init_node('go_to_point')
+    rospy.init_node('go_to_point_node')
     pub_ = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
     sub_odom = rospy.Subscriber('/odom', Odometry, clbk_odom)
     service = rospy.Service('/go_to_point', Position, go_to_point)

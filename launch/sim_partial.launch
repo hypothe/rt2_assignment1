@@ -20,9 +20,9 @@
    
    <!-- node name="positionServer"  pkg="rt2_assignment1" type="position_service" /-->
    
-   <node name="stateMachine" pkg="rt2_assignment1" type="state_machine" output="screen"/>
+   <!--node name="stateMachine" pkg="rt2_assignment1" type="state_machine" output="screen"/-->
    
-   <!-- node name="userInterface" pkg="rt2_assignment1" type="user_interface.py" output="screen"/-->
+   <node name="userInterface" pkg="rt2_assignment1" type="user_interface.py" output="screen"/>
    
 
 </launch>
