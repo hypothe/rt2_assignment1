@@ -65,7 +65,7 @@ public:
     
     /*  Periodically check for the goToPoint callback */
     timer_ = this->create_wall_timer(
-      10000ms, std::bind(&StateMachine::fetch_new_goal, this));
+      500ms, std::bind(&StateMachine::fetch_new_goal, this));
   }
 
 
@@ -87,7 +87,6 @@ private:
   	const std::shared_ptr<Command::Response> response)
   {
     (void) request_header;
-    response->ok = true;
     if (request->command == "start"){
       start = true;
       /*
@@ -101,6 +100,7 @@ private:
       // start again the goToPoint behaviour
     }
     else{start = false;}
+    response->ok = start;
     RCLCPP_INFO(this->get_logger(), "Received request %s", request->command.c_str());
   }
   
