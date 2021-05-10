@@ -56,7 +56,7 @@ def normalize_angle(angle):
 def fix_yaw(des_pos):
     desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
     err_yaw = normalize_angle(desired_yaw - yaw_)
-    rospy.loginfo(err_yaw)
+    #rospy.loginfo(err_yaw)
     twist_msg = Twist()
     if math.fabs(err_yaw) > yaw_precision_2_:
         twist_msg.angular.z = kp_a*err_yaw
@@ -69,6 +69,7 @@ def fix_yaw(des_pos):
     if math.fabs(err_yaw) <= yaw_precision_2_:
         #print ('Yaw error: [%s]' % err_yaw)
         change_state(1)
+    
 
 
 def go_straight_ahead(des_pos):
@@ -77,7 +78,7 @@ def go_straight_ahead(des_pos):
     err_pos = math.sqrt(pow(des_pos.y - position_.y, 2) +
                         pow(des_pos.x - position_.x, 2))
     err_yaw = normalize_angle(desired_yaw - yaw_)
-    rospy.loginfo(err_yaw)
+    #rospy.loginfo(err_yaw)
 
     if err_pos > dist_precision_:
         twist_msg = Twist()
@@ -125,15 +126,15 @@ def go_to_point(req):
     des_yaw = req.theta
     change_state(0)
     while True:
-    	if state_ == 0:
-    		fix_yaw(desired_position)
-    	elif state_ == 1:
-    		go_straight_ahead(desired_position)
-    	elif state_ == 2:
-    		fix_final_yaw(des_yaw)
-    	elif state_ == 3:
-    		done()
-    		break
+        if state_ == 0:
+            fix_yaw(desired_position)
+        elif state_ == 1:
+            go_straight_ahead(desired_position)
+        elif state_ == 2:
+            fix_final_yaw(des_yaw)
+        elif state_ == 3:
+            done()
+            break
     return True
 
 def main():
