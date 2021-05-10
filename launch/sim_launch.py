@@ -11,7 +11,8 @@ def generate_launch_description():
         namespace='',
         package='rclcpp_components',
         executable='component_container',
-        composable_node_descriptions=[ComposableNode(
+        composable_node_descriptions=[
+                ComposableNode(
                     package = this_pkg,
                     plugin = this_pkg+'::RandPosServer',
                     name='position_server_node'),

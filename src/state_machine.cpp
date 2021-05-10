@@ -4,7 +4,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_components/register_node_macro.hpp"
-
+/*  Services includes  */
 #include "rt2_assignment1/srv/command.hpp"
 #include "rt2_assignment1/srv/position.hpp"
 #include "rt2_assignment1/srv/random_position.hpp"
@@ -21,10 +21,28 @@ using std::placeholders::_3;
 
 namespace rt2_assignment1
 {
-
+/****************************************//**
+* State machine implementation
+*
+* This component receives the user's requests:
+* if these ask for the robot to start moving
+* then a random goal pose is retrieved from
+* '/position_server' and it's forwarded to
+* the 'go_to_point' service; once the goal
+* is reached the process is repeated, until
+* the user asks for the robot to stop.
+*
+********************************************/
 class StateMachine : public rclcpp::Node
 {
 public:
+  /****************************************//**
+  * Constructor, instanciates a server, two
+  * clients and initialize the variables.
+  *
+  * \param options (const rclcpp::NodeOptions &):
+  *   Used to run this node as a component
+  ********************************************/
   StateMachine(const rclcpp::NodeOptions & options)
   : Node("state_machine", options)
   { 
@@ -70,17 +88,35 @@ public:
 
 
 private:
-  
+  /****************************************//**
+  * Periodic timer callback
+  *
+  * This function is periodically called to
+  * check whether a new goal should be
+  * retrieved and forwarded to the go_to_point.
+  *
+  ********************************************/
   void fetch_new_goal(){
     
     if (!goal_reached) return; // we're still trying to reach the previous goal
     
     if (!start) return; // we reached the goal, but there's no need to fetch a new one
-    // If we reached the previous goal and we should keep going fetch the new one
+    // If we reached the previous goal and we should keep going then fetch the new one
     call_goToPoint();
-    RCLCPP_INFO(this->get_logger(), "Timer callback GR%d ST%d", goal_reached, start);
   }
   
+  /****************************************//**
+  * Service callback setting the start/stop
+  * robot state
+  *
+  * \param request_header (const std::shared_ptr<rmw_request_id_t>):
+  *   Service call header (unused).
+  * \param request (const std::shared_ptr<Command::Request>):
+  *   Service request, containing the command (string).
+  * \param response (const std::shared_ptr<Command::Response>):
+  *   Service response, the value of the 'start' state (bool).
+  *
+  ********************************************/ 
   void user_interface(
   	const std::shared_ptr<rmw_request_id_t> request_header,
   	const std::shared_ptr<Command::Request> request,
@@ -94,18 +130,29 @@ private:
       call_goToPoint();
       It soon became obvious this had the small problem of blocking
       everything preventing this service to return until call_goToPoint
-      ended (which, being that funtion potentially recursive, was not a
-      great idea either.
+      ended (which, being that funtion at first potentially recursive,
+      was not a great idea either).
       */
-      // start again the goToPoint behaviour
     }
     else{start = false;}
     response->ok = start;
     RCLCPP_INFO(this->get_logger(), "Received request %s", request->command.c_str());
   }
   
-  // function to get a new random position and publishing it, iterating as long as the user does
-  // not ask to stop
+  /****************************************//**
+  * Retrieve and set a new goal
+  *
+  * The goal pose is retrieved from the
+  * '/position_server' service and then passed
+  * as the request to the '/go_to_point'
+  * service in order to set the robot goal.
+  * Once this last service call returns a
+  * callback is issued setting the goal as
+  * reached.
+  * All service call are asynchronous to avoid
+  * blocking.
+  *
+  ********************************************/ 
   void call_goToPoint(){
     
     call_randomPosition();
@@ -125,7 +172,17 @@ private:
     auto future_result = client_p->async_send_request(request_p, point_reached_callback);
   }
   
-  //function to call the random position service
+  //function to call the random position service  
+  /****************************************//**
+  * Retrieve the goal pose
+  *
+  * The goal pose is retrieved from the
+  * '/position_server' service. Once the async
+  * call returns the that value is stored in
+  * the 'response_rp' varible, which always
+  * maintains a copy of the current goal.
+  *
+  ********************************************/ 
   void call_randomPosition(){
     // Update the private position var once the response is received
     auto response_rp_received_callback = 
@@ -133,18 +190,18 @@ private:
     auto future_result = client_rp->async_send_request(request_rp,response_rp_received_callback);
   }
   
-  rclcpp::Service<Command>::SharedPtr service_c;
-  rclcpp::Client<RandomPosition>::SharedPtr client_rp;
-  rclcpp::Client<Position>::SharedPtr client_p;
+  rclcpp::Service<Command>::SharedPtr service_c;          /*!<  Command service  */
+  rclcpp::Client<RandomPosition>::SharedPtr client_rp;    /*!<  RandomPosition client  */
+  rclcpp::Client<Position>::SharedPtr client_p;           /*!<  Position client  */
+
+  std::shared_ptr<RandomPosition::Request> request_rp;    /*!<  RandomPosition service request  */
+  std::shared_ptr<RandomPosition::Response> response_rp;  /*!<  RandomPosition service response  */
+  std::shared_ptr<Position::Request> request_p;           /*!<  Position service request  */
   
-  std::shared_ptr<RandomPosition::Request> request_rp;
-  std::shared_ptr<RandomPosition::Response> response_rp;
-  std::shared_ptr<Position::Request> request_p;
+  rclcpp::TimerBase::SharedPtr timer_;                    /*!<  Periodic timer used to monitor the goal state */
   
-  rclcpp::TimerBase::SharedPtr timer_;
-  
-  bool start;
-  bool goal_reached;
+  bool start;                                             /*!<  Robot state, whether it should keep moving or not  */
+  bool goal_reached;                                      /*!<  Goal state, whether it's been reached or not  */
   
 };
 

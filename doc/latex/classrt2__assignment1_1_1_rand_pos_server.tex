@@ -1,0 +1,133 @@
+\hypertarget{classrt2__assignment1_1_1_rand_pos_server}{}\doxysection{rt2\+\_\+assignment1\+::Rand\+Pos\+Server Class Reference}
+\label{classrt2__assignment1_1_1_rand_pos_server}\index{rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}}
+
+
+Inheritance diagram for rt2\+\_\+assignment1\+::Rand\+Pos\+Server\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classrt2__assignment1_1_1_rand_pos_server__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for rt2\+\_\+assignment1\+::Rand\+Pos\+Server\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classrt2__assignment1_1_1_rand_pos_server__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrt2__assignment1_1_1_rand_pos_server_a201c6a41da778d44d9477565dd533e1c}{Rand\+Pos\+Server}} (const rclcpp\+::\+Node\+Options \&options)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classrt2__assignment1_1_1_rand_pos_server_a8f9e23b3a5c823345f4ef51b5565cb95}{rand\+M\+ToN}} (double M, double N)
+\item 
+void \mbox{\hyperlink{classrt2__assignment1_1_1_rand_pos_server_ae546938a5eccdb3d840a3334a9df71ef}{myrandom}} (const std\+::shared\+\_\+ptr$<$ rmw\+\_\+request\+\_\+id\+\_\+t $>$ request\+\_\+header, const std\+::shared\+\_\+ptr$<$ Random\+Position\+::\+Request $>$ request, const std\+::shared\+\_\+ptr$<$ Random\+Position\+::\+Response $>$ response)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+rclcpp\+::\+Service$<$ Random\+Position $>$\+::Shared\+Ptr \mbox{\hyperlink{classrt2__assignment1_1_1_rand_pos_server_afd54221de34783dcfeb511942c6cbedd}{service\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Server generating a random position
+
+This server is what serves the \textquotesingle{}/position\+\_\+server\textquotesingle{} service. 
+
+Definition at line 20 of file position\+\_\+service.\+cpp.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrt2__assignment1_1_1_rand_pos_server_a201c6a41da778d44d9477565dd533e1c}\label{classrt2__assignment1_1_1_rand_pos_server_a201c6a41da778d44d9477565dd533e1c}} 
+\index{rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}!RandPosServer@{RandPosServer}}
+\index{RandPosServer@{RandPosServer}!rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}}
+\doxysubsubsection{\texorpdfstring{RandPosServer()}{RandPosServer()}}
+{\footnotesize\ttfamily rt2\+\_\+assignment1\+::\+Rand\+Pos\+Server\+::\+Rand\+Pos\+Server (\begin{DoxyParamCaption}\item[{const rclcpp\+::\+Node\+Options \&}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor, instanciates the server
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & (const rclcpp\+::\+Node\+Options \&)\+: Used to run this node as a component \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file position\+\_\+service.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrt2__assignment1_1_1_rand_pos_server_ae546938a5eccdb3d840a3334a9df71ef}\label{classrt2__assignment1_1_1_rand_pos_server_ae546938a5eccdb3d840a3334a9df71ef}} 
+\index{rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}!myrandom@{myrandom}}
+\index{myrandom@{myrandom}!rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}}
+\doxysubsubsection{\texorpdfstring{myrandom()}{myrandom()}}
+{\footnotesize\ttfamily void rt2\+\_\+assignment1\+::\+Rand\+Pos\+Server\+::myrandom (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ rmw\+\_\+request\+\_\+id\+\_\+t $>$}]{request\+\_\+header,  }\item[{const std\+::shared\+\_\+ptr$<$ Random\+Position\+::\+Request $>$}]{request,  }\item[{const std\+::shared\+\_\+ptr$<$ Random\+Position\+::\+Response $>$}]{response }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Service callback generating a random (x,y,theta) pose
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+\_\+header} & (const std\+::shared\+\_\+ptr$<$rmw\+\_\+request\+\_\+id\+\_\+t$>$)\+: Service call header (unused). \\
+\hline
+{\em request} & (const std\+::shared\+\_\+ptr$<$\+Random\+Position\+::\+Request$>$)\+: Service request, containing the (x,y) ranges. \\
+\hline
+{\em response} & (const std\+::shared\+\_\+ptr$<$\+Random\+Position\+::\+Response$>$)\+: Service response, containing (x,y,theta). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file position\+\_\+service.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_rand_pos_server_a8f9e23b3a5c823345f4ef51b5565cb95}\label{classrt2__assignment1_1_1_rand_pos_server_a8f9e23b3a5c823345f4ef51b5565cb95}} 
+\index{rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}!randMToN@{randMToN}}
+\index{randMToN@{randMToN}!rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}}
+\doxysubsubsection{\texorpdfstring{randMToN()}{randMToN()}}
+{\footnotesize\ttfamily double rt2\+\_\+assignment1\+::\+Rand\+Pos\+Server\+::rand\+M\+ToN (\begin{DoxyParamCaption}\item[{double}]{M,  }\item[{double}]{N }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Generate a bounded random number
+
+
+\begin{DoxyParams}{Parameters}
+{\em M} & (double)\+: Lower bound. \\
+\hline
+{\em N} & (double)\+: Upper bound.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em rand\+M\+ToN} & (double)\+: random number, linearly distributed, between M and N. \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 51 of file position\+\_\+service.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classrt2__assignment1_1_1_rand_pos_server_afd54221de34783dcfeb511942c6cbedd}\label{classrt2__assignment1_1_1_rand_pos_server_afd54221de34783dcfeb511942c6cbedd}} 
+\index{rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}!service\_@{service\_}}
+\index{service\_@{service\_}!rt2\_assignment1::RandPosServer@{rt2\_assignment1::RandPosServer}}
+\doxysubsubsection{\texorpdfstring{service\_}{service\_}}
+{\footnotesize\ttfamily rclcpp\+::\+Service$<$Random\+Position$>$\+::Shared\+Ptr rt2\+\_\+assignment1\+::\+Rand\+Pos\+Server\+::service\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Random\+Position service ~\newline
+ 
+
+Definition at line 76 of file position\+\_\+service.\+cpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/position\+\_\+service.\+cpp\end{DoxyCompactItemize}

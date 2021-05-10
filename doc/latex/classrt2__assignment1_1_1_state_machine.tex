@@ -1,0 +1,252 @@
+\hypertarget{classrt2__assignment1_1_1_state_machine}{}\doxysection{rt2\+\_\+assignment1\+::State\+Machine Class Reference}
+\label{classrt2__assignment1_1_1_state_machine}\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+
+
+Inheritance diagram for rt2\+\_\+assignment1\+::State\+Machine\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{classrt2__assignment1_1_1_state_machine__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for rt2\+\_\+assignment1\+::State\+Machine\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{classrt2__assignment1_1_1_state_machine__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_af6d63f4d9d1fc8f55fdc97f09862ad4f}{State\+Machine}} (const rclcpp\+::\+Node\+Options \&options)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_afb4cf9162cd864e462e395ebb4ae4b70}{fetch\+\_\+new\+\_\+goal}} ()
+\item 
+void \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a1b176a84600b28eb9d10d64674c9b7b9}{user\+\_\+interface}} (const std\+::shared\+\_\+ptr$<$ rmw\+\_\+request\+\_\+id\+\_\+t $>$ request\+\_\+header, const std\+::shared\+\_\+ptr$<$ Command\+::\+Request $>$ request, const std\+::shared\+\_\+ptr$<$ Command\+::\+Response $>$ response)
+\item 
+void \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_aa503a5588c40f62d3e1957f07e511062}{call\+\_\+go\+To\+Point}} ()
+\item 
+void \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_ab79adf3df7cbb4e725874c43c54d9df3}{call\+\_\+random\+Position}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+rclcpp\+::\+Service$<$ Command $>$\+::Shared\+Ptr \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a416b1223a979d21be895d247be113cb7}{service\+\_\+c}}
+\item 
+rclcpp\+::\+Client$<$ Random\+Position $>$\+::Shared\+Ptr \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a4e16049538676719d9508e9ca34d9b8f}{client\+\_\+rp}}
+\item 
+rclcpp\+::\+Client$<$ Position $>$\+::Shared\+Ptr \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_ac2c42bcf76ef3f3a587c9f15c9c700e8}{client\+\_\+p}}
+\item 
+std\+::shared\+\_\+ptr$<$ Random\+Position\+::\+Request $>$ \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_acba297d5a4d839fff0c31587f8b4b56f}{request\+\_\+rp}}
+\item 
+std\+::shared\+\_\+ptr$<$ Random\+Position\+::\+Response $>$ \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a673a00d879422624de355da4b656a8e5}{response\+\_\+rp}}
+\item 
+std\+::shared\+\_\+ptr$<$ Position\+::\+Request $>$ \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a508d8d028f5e5cecef9ff5ee3e498490}{request\+\_\+p}}
+\item 
+rclcpp\+::\+Timer\+Base\+::\+Shared\+Ptr \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a8dc54f135eb80560638771247f1edb70}{timer\+\_\+}}
+\item 
+bool \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a8a3c76799ed07a3a31240ca567b193b5}{start}}
+\item 
+bool \mbox{\hyperlink{classrt2__assignment1_1_1_state_machine_a5eea24330e2a18a9a03864adbbf55d01}{goal\+\_\+reached}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+State machine implementation
+
+This component receives the user\textquotesingle{}s requests\+: if these ask for the robot to start moving then a random goal pose is retrieved from \textquotesingle{}/position\+\_\+server\textquotesingle{} and it\textquotesingle{}s forwarded to the \textquotesingle{}go\+\_\+to\+\_\+point\textquotesingle{} service; once the goal is reached the process is repeated, until the user asks for the robot to stop. 
+
+Definition at line 36 of file state\+\_\+machine.\+cpp.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_af6d63f4d9d1fc8f55fdc97f09862ad4f}\label{classrt2__assignment1_1_1_state_machine_af6d63f4d9d1fc8f55fdc97f09862ad4f}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!StateMachine@{StateMachine}}
+\index{StateMachine@{StateMachine}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{StateMachine()}{StateMachine()}}
+{\footnotesize\ttfamily rt2\+\_\+assignment1\+::\+State\+Machine\+::\+State\+Machine (\begin{DoxyParamCaption}\item[{const rclcpp\+::\+Node\+Options \&}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor, instanciates a server, two clients and initialize the variables.
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & (const rclcpp\+::\+Node\+Options \&)\+: Used to run this node as a component \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file state\+\_\+machine.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_aa503a5588c40f62d3e1957f07e511062}\label{classrt2__assignment1_1_1_state_machine_aa503a5588c40f62d3e1957f07e511062}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!call\_goToPoint@{call\_goToPoint}}
+\index{call\_goToPoint@{call\_goToPoint}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{call\_goToPoint()}{call\_goToPoint()}}
+{\footnotesize\ttfamily void rt2\+\_\+assignment1\+::\+State\+Machine\+::call\+\_\+go\+To\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Retrieve and set a new goal
+
+The goal pose is retrieved from the \textquotesingle{}/position\+\_\+server\textquotesingle{} service and then passed as the request to the \textquotesingle{}/go\+\_\+to\+\_\+point\textquotesingle{} service in order to set the robot goal. Once this last service call returns a callback is issued setting the goal as reached. All service call are asynchronous to avoid blocking. 
+
+Definition at line 156 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_ab79adf3df7cbb4e725874c43c54d9df3}\label{classrt2__assignment1_1_1_state_machine_ab79adf3df7cbb4e725874c43c54d9df3}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!call\_randomPosition@{call\_randomPosition}}
+\index{call\_randomPosition@{call\_randomPosition}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{call\_randomPosition()}{call\_randomPosition()}}
+{\footnotesize\ttfamily void rt2\+\_\+assignment1\+::\+State\+Machine\+::call\+\_\+random\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Retrieve the goal pose
+
+The goal pose is retrieved from the \textquotesingle{}/position\+\_\+server\textquotesingle{} service. Once the async call returns the that value is stored in the \textquotesingle{}response\+\_\+rp\textquotesingle{} varible, which always maintains a copy of the current goal. 
+
+Definition at line 186 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_afb4cf9162cd864e462e395ebb4ae4b70}\label{classrt2__assignment1_1_1_state_machine_afb4cf9162cd864e462e395ebb4ae4b70}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!fetch\_new\_goal@{fetch\_new\_goal}}
+\index{fetch\_new\_goal@{fetch\_new\_goal}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{fetch\_new\_goal()}{fetch\_new\_goal()}}
+{\footnotesize\ttfamily void rt2\+\_\+assignment1\+::\+State\+Machine\+::fetch\+\_\+new\+\_\+goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Periodic timer callback
+
+This function is periodically called to check whether a new goal should be retrieved and forwarded to the go\+\_\+to\+\_\+point. 
+
+Definition at line 99 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a1b176a84600b28eb9d10d64674c9b7b9}\label{classrt2__assignment1_1_1_state_machine_a1b176a84600b28eb9d10d64674c9b7b9}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!user\_interface@{user\_interface}}
+\index{user\_interface@{user\_interface}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{user\_interface()}{user\_interface()}}
+{\footnotesize\ttfamily void rt2\+\_\+assignment1\+::\+State\+Machine\+::user\+\_\+interface (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ rmw\+\_\+request\+\_\+id\+\_\+t $>$}]{request\+\_\+header,  }\item[{const std\+::shared\+\_\+ptr$<$ Command\+::\+Request $>$}]{request,  }\item[{const std\+::shared\+\_\+ptr$<$ Command\+::\+Response $>$}]{response }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Service callback setting the start/stop robot state
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+\_\+header} & (const std\+::shared\+\_\+ptr$<$rmw\+\_\+request\+\_\+id\+\_\+t$>$)\+: Service call header (unused). \\
+\hline
+{\em request} & (const std\+::shared\+\_\+ptr$<$\+Command\+::\+Request$>$)\+: Service request, containing the command (string). \\
+\hline
+{\em response} & (const std\+::shared\+\_\+ptr$<$\+Command\+::\+Response$>$)\+: Service response, the value of the \textquotesingle{}start\textquotesingle{} state (bool). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 120 of file state\+\_\+machine.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_ac2c42bcf76ef3f3a587c9f15c9c700e8}\label{classrt2__assignment1_1_1_state_machine_ac2c42bcf76ef3f3a587c9f15c9c700e8}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!client\_p@{client\_p}}
+\index{client\_p@{client\_p}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{client\_p}{client\_p}}
+{\footnotesize\ttfamily rclcpp\+::\+Client$<$Position$>$\+::Shared\+Ptr rt2\+\_\+assignment1\+::\+State\+Machine\+::client\+\_\+p\hspace{0.3cm}{\ttfamily [private]}}
+
+Position client ~\newline
+ 
+
+Definition at line 195 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a4e16049538676719d9508e9ca34d9b8f}\label{classrt2__assignment1_1_1_state_machine_a4e16049538676719d9508e9ca34d9b8f}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!client\_rp@{client\_rp}}
+\index{client\_rp@{client\_rp}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{client\_rp}{client\_rp}}
+{\footnotesize\ttfamily rclcpp\+::\+Client$<$Random\+Position$>$\+::Shared\+Ptr rt2\+\_\+assignment1\+::\+State\+Machine\+::client\+\_\+rp\hspace{0.3cm}{\ttfamily [private]}}
+
+Random\+Position client ~\newline
+ 
+
+Definition at line 194 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a5eea24330e2a18a9a03864adbbf55d01}\label{classrt2__assignment1_1_1_state_machine_a5eea24330e2a18a9a03864adbbf55d01}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!goal\_reached@{goal\_reached}}
+\index{goal\_reached@{goal\_reached}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{goal\_reached}{goal\_reached}}
+{\footnotesize\ttfamily bool rt2\+\_\+assignment1\+::\+State\+Machine\+::goal\+\_\+reached\hspace{0.3cm}{\ttfamily [private]}}
+
+Goal state, whether it\textquotesingle{}s been reached or not ~\newline
+ 
+
+Definition at line 204 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a508d8d028f5e5cecef9ff5ee3e498490}\label{classrt2__assignment1_1_1_state_machine_a508d8d028f5e5cecef9ff5ee3e498490}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!request\_p@{request\_p}}
+\index{request\_p@{request\_p}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{request\_p}{request\_p}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$Position\+::\+Request$>$ rt2\+\_\+assignment1\+::\+State\+Machine\+::request\+\_\+p\hspace{0.3cm}{\ttfamily [private]}}
+
+Position service request ~\newline
+ 
+
+Definition at line 199 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_acba297d5a4d839fff0c31587f8b4b56f}\label{classrt2__assignment1_1_1_state_machine_acba297d5a4d839fff0c31587f8b4b56f}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!request\_rp@{request\_rp}}
+\index{request\_rp@{request\_rp}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{request\_rp}{request\_rp}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$Random\+Position\+::\+Request$>$ rt2\+\_\+assignment1\+::\+State\+Machine\+::request\+\_\+rp\hspace{0.3cm}{\ttfamily [private]}}
+
+Random\+Position service request ~\newline
+ 
+
+Definition at line 197 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a673a00d879422624de355da4b656a8e5}\label{classrt2__assignment1_1_1_state_machine_a673a00d879422624de355da4b656a8e5}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!response\_rp@{response\_rp}}
+\index{response\_rp@{response\_rp}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{response\_rp}{response\_rp}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$Random\+Position\+::\+Response$>$ rt2\+\_\+assignment1\+::\+State\+Machine\+::response\+\_\+rp\hspace{0.3cm}{\ttfamily [private]}}
+
+Random\+Position service response ~\newline
+ 
+
+Definition at line 198 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a416b1223a979d21be895d247be113cb7}\label{classrt2__assignment1_1_1_state_machine_a416b1223a979d21be895d247be113cb7}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!service\_c@{service\_c}}
+\index{service\_c@{service\_c}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{service\_c}{service\_c}}
+{\footnotesize\ttfamily rclcpp\+::\+Service$<$Command$>$\+::Shared\+Ptr rt2\+\_\+assignment1\+::\+State\+Machine\+::service\+\_\+c\hspace{0.3cm}{\ttfamily [private]}}
+
+Command service ~\newline
+ 
+
+Definition at line 193 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a8a3c76799ed07a3a31240ca567b193b5}\label{classrt2__assignment1_1_1_state_machine_a8a3c76799ed07a3a31240ca567b193b5}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!start@{start}}
+\index{start@{start}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily bool rt2\+\_\+assignment1\+::\+State\+Machine\+::start\hspace{0.3cm}{\ttfamily [private]}}
+
+Robot state, whether it should keep moving or not ~\newline
+ 
+
+Definition at line 203 of file state\+\_\+machine.\+cpp.
+
+\mbox{\Hypertarget{classrt2__assignment1_1_1_state_machine_a8dc54f135eb80560638771247f1edb70}\label{classrt2__assignment1_1_1_state_machine_a8dc54f135eb80560638771247f1edb70}} 
+\index{rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}!timer\_@{timer\_}}
+\index{timer\_@{timer\_}!rt2\_assignment1::StateMachine@{rt2\_assignment1::StateMachine}}
+\doxysubsubsection{\texorpdfstring{timer\_}{timer\_}}
+{\footnotesize\ttfamily rclcpp\+::\+Timer\+Base\+::\+Shared\+Ptr rt2\+\_\+assignment1\+::\+State\+Machine\+::timer\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+Periodic timer used to monitor the goal state 
+
+Definition at line 201 of file state\+\_\+machine.\+cpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/state\+\_\+machine.\+cpp\end{DoxyCompactItemize}
