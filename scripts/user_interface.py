@@ -4,6 +4,7 @@ from rt2_assignment1.srv import Command
 
 def main():
     rospy.init_node('user_interface')
+    rospy.wait_for_service('/user_interface')
     ui_client = rospy.ServiceProxy('/user_interface', Command)
     time.sleep(10)
     rate = rospy.Rate(20)

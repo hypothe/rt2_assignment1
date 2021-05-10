@@ -37,7 +37,8 @@ void doneCllbck(const actionlib::SimpleClientGoalState& goal_state,
 void activeCllbck(){return;}
 
 void feedbackCllbck(const rt2_assignment1::PoseFeedbackConstPtr& feedback){
-    ROS_INFO("FEEDBACK: %s", feedback->status.c_str());
+    //ROS_INFO("FEEDBACK: %s", feedback->status.c_str());
+    return;
 }
 
 int main(int argc, char **argv)
@@ -46,9 +47,6 @@ int main(int argc, char **argv)
    ros::NodeHandle n;
    ros::ServiceServer service= n.advertiseService("/user_interface", user_interface);
    ros::ServiceClient client_rp = n.serviceClient<rt2_assignment1::RandomPosition>("/position_server");
-   //ros::ServiceClient client_p = n.serviceClient<rt2_assignment1::Position>("/go_to_point");
-   //ac.initSimpleClient(n, "/go_to_point", true)
-   //actionlib::SimpleClientGoalState state;
    actionlib::SimpleActionClient<rt2_assignment1::PoseAction> ac("/go_to_point", true);
    
    rt2_assignment1::RandomPosition rp;
@@ -95,7 +93,6 @@ int main(int argc, char **argv)
                     state = 0;
                 }
                 
-                ROS_INFO("STATE: %d", state);
         }
    }
    return 0;

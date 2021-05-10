@@ -102,22 +102,6 @@ def go_straight_ahead(des_pos):
     if math.fabs(err_yaw) > yaw_precision_:
         #print ('Yaw error: [%s]' % err_yaw)
         change_state(0)
-
-def fix_final_yaw(des_yaw):
-    err_yaw = normalize_angle(des_yaw - yaw_)
-    rospy.loginfo(err_yaw)
-    twist_msg = Twist()
-    if math.fabs(err_yaw) > yaw_precision_2_:
-        twist_msg.angular.z = kp_a*err_yaw
-        if twist_msg.angular.z > ub_a:
-            twist_msg.angular.z = ub_a
-        elif twist_msg.angular.z < lb_a:
-            twist_msg.angular.z = lb_a
-    pub_.publish(twist_msg)
-    # state change conditions
-    if math.fabs(err_yaw) <= yaw_precision_2_:
-        #print ('Yaw error: [%s]' % err_yaw)
-        change_state(3)
         
 def done():
     twist_msg = Twist()
