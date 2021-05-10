@@ -1,7 +1,8 @@
-# Research Track 2 - assignment 1 - Marco Gabriele Fedozzi [50833565]
-## ROS2 Components
+# Research Track 2 - assignment 1
 
----
+#### Marco Gabriele Fedozzi [50833565]
+
+## ROS2 Components
 
 ### Content Description
 
@@ -17,21 +18,23 @@ In particular, the nodes contained in this package are:
 The package can be compiled as normal
 
 ```bash
-path/to/ros2_ws/colcon build --packages-up-to rt2_assignment1
+path/to/ros2_ws/$ colcon build --packages-up-to rt2_assignment1
 ```
 
 The two components can be run as individual nodes with
 
 ```bash
-ros2 run rt2_assignment1 comp_randomposserver
-ros2 run rt2_assignment1 comp_statemachine
+path/to/ros2_ws/$ ros2 run rt2_assignment1 comp_randomposserver
+path/to/ros2_ws/$ ros2 run rt2_assignment1 comp_statemachine
 ```
 
 However, a launch file instanciating a container and loading the components into it is provided for both efficiency and ease of use
 
 ```bash
-ros2 launch rt2_assignment1 sim_launch.py
+path/to/ros2_ws/$ ros2 launch rt2_assignment1 sim_launch.py
 ```
+
+---
 
 In order to make this package communicate with the ROS1 residing "half" the third-party **ros1_bridge** package is used (see **Requirements** for more details), the mapping rules of which are expressed in the **mapping_rules.yaml** file. Hence, three steps are required to start the system
 1. Launch the needed component from the ROS1 sided
@@ -55,7 +58,6 @@ These three steps are pre-written in the bash script `bridge_launch.sh`, so that
 path/to/ros2_ws/src/rt2_assignment1$ ./bridge_launch.sh
 ```
 
----
 
 ### Implementation Details
 
@@ -64,13 +66,11 @@ path/to/ros2_ws/src/rt2_assignment1$ ./bridge_launch.sh
 Notice that, being this a component, no spinning is done inside the class. Instead, every service call is implemented asynchronously, with response-related operations done in a dedicated callback. To retrieve a new goal pose once the previous one has been reached a recursive behaviour _could've been_ implemented, but being the '/go_to_point' callback treated as blocking by the ROS1 bridge (despite it being asyn in ROS2), this could've resulted in an endless blocking service call (imagine a scenario in which the callback to '/user_interface' calls for the '/go_to_point' service directly, which recursively launches a new call once the previous one returned, never passing control back to the original callback).
 To avoid this, and in general make the code more robust and readable, a periodic timer has been implemented, with a function binded to its expiration: inside this callback it's checked whether the robot has reached its previous goal position and if the user didn't ask for it to be stopped: if both these conditions hold then the go_to_point-related callback is issued, asking for a new target pose and making the robot move towards it by calling the '/go_to_point' service.
 
----
 
 ### Documentation
 
 Beside this README further documentation of all classes and methods can be found in the **doc** folder.
 
----
 
 ### Requirements
 
