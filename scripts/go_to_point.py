@@ -5,7 +5,6 @@ import rospy
 from geometry_msgs.msg import Twist, Point
 from nav_msgs.msg import Odometry
 from tf import transformations
-from rt2_assignment1.srv import Position
 import math
 import actionlib
 import actionlib.msg
@@ -112,7 +111,7 @@ def done():
 def go_to_point(goal):
     global act_s
     desired_position = Point()
-    desired_position_x = goal.x # get the desired position from the goal received
+    desired_position.x = goal.x # get the desired position from the goal received
     desired_position.y = goal.y
     des_yaw = goal.theta
 
@@ -175,6 +174,7 @@ def main():
         # planning is the action binded to the callback of the action
     act_s.start()
     
+    #print('###go_to_point node starting###')
     rospy.spin()
 
 if __name__ == '__main__':

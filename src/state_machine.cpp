@@ -45,10 +45,14 @@ int main(int argc, char **argv)
 {
    ros::init(argc, argv, "state_machine");
    ros::NodeHandle n;
+   //std::cout << "\n--- inside SM1 ---\n"; fflush(stdout);
+   
    ros::ServiceServer service= n.advertiseService("/user_interface", user_interface);
    ros::ServiceClient client_rp = n.serviceClient<rt2_assignment1::RandomPosition>("/position_server");
-   actionlib::SimpleActionClient<rt2_assignment1::PoseAction> ac("/go_to_point", true);
+   //std::cout << "\n--- inside SM2 ---\n"; fflush(stdout);
+   actionlib::SimpleActionClient<rt2_assignment1::PoseAction> ac("go_to_point", true);
    
+   //std::cout << "\n--- inside SM3 ---\n"; fflush(stdout);
    rt2_assignment1::RandomPosition rp;
    rp.request.x_max = 5.0;
    rp.request.x_min = -5.0;
@@ -60,6 +64,7 @@ int main(int argc, char **argv)
         ROS_INFO("Waiting for the go_to_point action server to come up");
     }
    
+   //std::cout << "\n--- inside SM ---\n";
    while(ros::ok()){
        	ros::spinOnce();
        	switch (state){
