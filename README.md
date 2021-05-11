@@ -1,8 +1,21 @@
-# First Assignment of the Research Track 2 course (Robotics Engineering / JEMARO, Unige)
+# Research Track 2 - assignment 1
 
-The package contains the nodes and the simulation environment for controlling a mobile robot in the Gazebo simulation environment.
-To launch the node, please run:
-```
-rosrun rt2_assignment1 sim.launch
+#### Marco Gabriele Fedozzi [50833565]
+
+## Content Description
+
+## Compiling and Running
+
+```bash
+path/to/ros_ws/$ catkin_make
 ```
 
+## Implementation Details
+
+### StateMachine
+
+## Documentation
+
+Beside this README further documentation of all classes and methods can be found in the **doc** folder.
+
+## Requirements
