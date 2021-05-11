@@ -35,26 +35,28 @@ path/to/ros2_ws/$ ros2 launch rt2_assignment1 sim_launch.py
 ---
 
 In order to make this package communicate with the ROS1 residing "half" the third-party **ros1_bridge** package is used (see **Requirements** for more details), the mapping rules of which are expressed in the **mapping_rules.yaml** file. Hence, three steps are required to start the system
-1. Launch the needed component from the ROS1 sided
+1. Launch the needed component from the ROS1 sided (in a shell with ROS1 sourced)
 
 ```bash
 path/to/ros_ws/src/rt2_assignment1$ roslaunch rt2_assignment1 sim_bridge.launch
 ```
 
-2. Run the ROS1 bridge
+2. Run the ROS1 bridge (in a shell with both ROS1 and ROS2 sourced)
 ```bash
 path/to/ros2_ws/src/rt2_assignment1$ ros2 run ros1_bridge dynamic_bridge
 ```
 
-3. Launch the container with the components implemented in this package
+3. Launch the container with the components implemented in this package (in a shell with ROS12 sourced)
 ```bash
 path/to/ros2_ws/src/rt2_assignment1$ ros2 launch rt2_assignment1 sim_launch.py
 ```
 
-These three steps are pre-written in the bash script `bridge_launch.sh`, so that the whole process boills down to
+These three steps are pre-written in the bash script `bridge_launch.sh`, so that the whole process boils down to
 ```bash
 path/to/ros2_ws/src/rt2_assignment1$ ./bridge_launch.sh
 ```
+
+> Note on paths and workspaces: the scripts assumes default locations for the ROS and ROS2 workspaces, see **Requirements** for details on how to change where the script should search them.
 
 
 ## Implementation Details
@@ -80,6 +82,14 @@ In order to launch the `bridge_launch.sh` bash script gnome-terminal must be ins
 ```bash
 sudo apt install gnome-terminal
 ```
+Both ROS Noetic and ROS2 Foxy must be present on the system. They are sourced autonomously by the scripts, but please notice that it assumes the following ROS and ROS2 default paths:
+```bash
+ROS_PATH=${HOME}/my_ros
+ROS2_PATH=${HOME}/my_ros2
+SRC_ROS1=/opt/ros/noetic/setup.bash
+SRC_ROS2=/opt/ros/foxy/setup.bash
+```
+In order to modify them to suit your system modify those lines in the `bridge_launch.sh` script.
 
 ## Known Issues and Limitations
 
@@ -90,5 +100,5 @@ To patch that the timeout can be increased by modifying its value in the **ros1_
 namely at line 314 of file **include/factory.hpp**; 60 seconds should be enough.
 
 Notice however that this workaround seems to not be enough when calling the nodes from the provided `bridge_launch.sh`,
-since the error can still arise sporadically there. Nevertheless, while error messages pop up in the terminal the system itself
-does not esperience any problem, since the services do terminate correctly and the exceptions are caught in the scripts.
+since the error can still arise sporadically there. Nevertheless, while error messages pop up in the terminal, the system itself
+does not experience any problem, since the services do terminate correctly and the exceptions are caught in the scripts.
