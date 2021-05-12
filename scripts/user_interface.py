@@ -18,6 +18,7 @@ def main():
             print("Robot stopping")
             ui_client("stop")
             x = int(input("\nPress 1 to start the robot "))
+#-#-#-#-#
             
 if __name__ == '__main__':
     main()
