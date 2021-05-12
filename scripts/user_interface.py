@@ -10,7 +10,7 @@ def main():
     except rospy.ServiceException as e:
         print("Service call to /user_interface failed with {}".format(e))
         
-    #time.sleep(5)
+    time.sleep(5)
     rate = rospy.Rate(20)
     x = int(input("\nPress 1 to start the robot "))
     while not rospy.is_shutdown():
