@@ -11,7 +11,7 @@ This package contains 4 nodes managing the control of a mobile robot, with a sim
 4. having reached the [x,y] goal position the robot turns in place in order to match the goal _theta_;
 5. if the user does not stop the robot GOTO step 1, otherwise stay still until asked to start again, then GOTO step 1;
 
-Since the user request is here implemented as an action it can be preempted, stoppinng the robot at any time and then reestarting it when issuing a new goal.
+Since the user request is here implemented as an action it can be preempted, stoppinng the robot at any time and then restarting it when issuing a new goal.
 
 ---
 
