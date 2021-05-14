@@ -59,7 +59,6 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    Command.srv
-   Position.srv
    RandomPosition.srv
  )
 
@@ -67,7 +66,6 @@ find_package(catkin REQUIRED COMPONENTS
 add_action_files(
    FILES
    Pose.action
-#   Action2.action
 )
 
 ## Generate added messages and services with any dependencies listed here
