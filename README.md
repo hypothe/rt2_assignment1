@@ -2,26 +2,60 @@
 
 #### Marco Gabriele Fedozzi [50833565]
 
-## Content Description
+```
+rt2_assignment1/
+  |
+  launch/         - launch files
+    |
+    sim.launch            - Gazebo simulation
+    sim_bridge.launch     - python scripts only launch
+    sim_coppelia.launch   - nodes only launch
+  scripts/        - python scripts
+    |
+    go_to_point.py        - pyhton script controlling the robot
+    user_interface.py     - minimal command line UI
+  src/            - C++ source code
+    |
+    position_service.cpp  - returns random position
+    state_machine.cpp     - manages the FSM logic
+  srv/            - custom services
+    !
+    Command.srv           - user UI input
+    Position.srv          - goal position
+    RandomPosition.srv    - bound random pose
+  urdf/           - robot description for Gazebo simulation
+    |
+    my_robot.urdf         - mobile robot description
+  cplScenes/      - CoppeliaSim scenes
+    |
+    pioneer_scene.ttt     - Pioneer p3dx scene
+    robotnk.scene         - Robotnik Summit XL140701 scene
+  CMakeLists.txt  - CMake file
+  README.md       - this very file
+  package.xml     - manifest
+```
 
-This package contains 4 nodes managing the control of a mobile robot, with a simple 'go_to_point' behaviour:
+## Package Description
+
+This package controls a mobile non-holonomic robot with a simple 'go_to_point' behaviour:
 1. a random goal is issued (a _pose_, [x,y,theta]);
 2. the robot orients itself towards the [x,y] destination;
 3. it then drives straight to that position (adjusting the orientation if need be);
 4. having reached the [x,y] goal position the robot turns in place in order to match the goal _theta_;
 5. if the user does not stop the robot GOTO step 1, otherwise stay still until asked to start again, then GOTO step 1;
 
-Since the user request is here implemented as a service it cannot be preempted, stopping the robot only once a goal is reached and restarting it when issuing a new goal.
+Since the user request is here implemented as a service it cannot be preempted, stopping the robot is possible only once a goal is reached, restarting it when issuing a new goal.
 
----
+## Contents Explanation
 
+This package contains 4 nodes managing the aforementioned control of a mobile robot.
 Two nodes are implemented as python scripts
 - **go_to_point.py**: the service server managing the robot speed control depending on the goal received.
 - **user_interface.py**:  the simple command line user interface, which sends the requests to start/stop the go_to_point behaviour.
 
-Whilst the last two are C++ based ndoes
+Whilst the last two are C++ based nodes
 - **position_service.cpp**: the server generating a random pose [x,y,theta] as a response to a request.
-- **state_machine.cpp**:  the FSM managing the request of a new goal pose when needed, sending it as a request to 'go_to_point' service server.
+- **state_machine.cpp**:  the FSM managing the request of a new pose when needed, sending it as a goal request to 'go_to_point' service server.
 
 ---
 
@@ -47,7 +81,7 @@ In this case the Gazebo simulation will automatically start.
 ```bash
 path/to/ros_ws/$ roslaunch rt2_assignment1 sim_coppelia.launch
 ```
-In this case CoppeliaSim must be started separately (remember to have an instance of roscore running before launching the CoppeliaSim executable). The simulation can be either started before or after launching the nodes, but do not try to run a new simulation when the nodes have already been running on a previous one (or the system could find itself in an initial state differente from the assumed one, never being able to reach the goal).In other terms, each time the simulation is restarted the nodes should be to, and vice-versa (generally).
+In this case CoppeliaSim must be started separately (remember to have an instance of roscore running before launching the CoppeliaSim executable). The simulation can be either started before or after launching the nodes, but do not try to run a new simulation when the nodes have already been running on a previous instance or the system could find itself in an initial state different from the assumed one, never being able to reach the goal. In other terms, each time the simulation is restarted the nodes should be restarted to, and vice-versa (generally).
 
 - **sim_bridge.launch**: to be used in order to launch only the Python scripts, leaving the rest to the components implemented in the ROS2 package, to which this is bridged using 'ros1_bridge' (see the README on the _'ros2'_ branch for further info)
 ```bash
@@ -66,4 +100,4 @@ No real documentation is provided here, since the nodes were already written and
 
 ## Known Issues and Limitations
 
-If you try running both the Gazebo and CoppeliaSim and the latter seems to not respond to the nodes, whilst the user interface results frozen after having told the system to run try to *kill the roscore process*; this might be related to Gazebo overwriting some values related to the simulation (probably simulation time) and not these not being appropriately "cleaned" once Gazebo is closed.
+If you try running both the Gazebo and CoppeliaSim and the latter seems to not respond to the nodes, whilst the user interface results frozen after having told the system to run, try to **kill the roscore process**; this might be related to Gazebo overwriting some values related to the simulation (probably simulation time) and these not being appropriately "cleaned" once Gazebo is closed.
