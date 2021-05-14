@@ -1,0 +1,99 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsubsection{Marco Gabriele Fedozzi \mbox{[}50833565\mbox{]}}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rt2\_assignment1/}
+\DoxyCodeLine{  |}
+\DoxyCodeLine{  action/         -\/ action files}
+\DoxyCodeLine{    |}
+\DoxyCodeLine{    Pose.action           -\/ goal definition}
+\DoxyCodeLine{  launch/         -\/ launch files}
+\DoxyCodeLine{    |}
+\DoxyCodeLine{    sim.launch            -\/ Gazebo simulation}
+\DoxyCodeLine{    sim\_bridge.launch     -\/ python scripts only launch}
+\DoxyCodeLine{    sim\_coppelia.launch   -\/ nodes only launch}
+\DoxyCodeLine{  scripts/        -\/ python scripts}
+\DoxyCodeLine{    |}
+\DoxyCodeLine{    go\_to\_point.py        -\/ pyhton script controlling the robot}
+\DoxyCodeLine{    user\_interface.py     -\/ minimal command line UI}
+\DoxyCodeLine{  src/            -\/ C++ source code}
+\DoxyCodeLine{    |}
+\DoxyCodeLine{    position\_service.cpp  -\/ returns random position}
+\DoxyCodeLine{    state\_machine.cpp     -\/ manages the FSM logic}
+\DoxyCodeLine{  srv/            -\/ custom services}
+\DoxyCodeLine{    !}
+\DoxyCodeLine{    Command.srv           -\/ user UI input}
+\DoxyCodeLine{    RandomPosition.srv    -\/ bound random pose}
+\DoxyCodeLine{  urdf/           -\/ robot description for Gazebo simulation}
+\DoxyCodeLine{    |}
+\DoxyCodeLine{    my\_robot.urdf         -\/ mobile robot description}
+\DoxyCodeLine{  cplScenes/      -\/ CoppeliaSim scenes}
+\DoxyCodeLine{    |}
+\DoxyCodeLine{    pioneer\_scene.ttt     -\/ Pioneer p3dx scene}
+\DoxyCodeLine{    robotnik\_scene.ttt    -\/ Robotnik Summit XL140701 scene}
+\DoxyCodeLine{  CMakeLists.txt  -\/ CMake file}
+\DoxyCodeLine{  README.md       -\/ this very file}
+\DoxyCodeLine{  package.xml     -\/ manifest}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{Package Description}\label{md__r_e_a_d_m_e_autotoc_md2}
+This package controls a mobile non-\/holonomic robot with a simple \textquotesingle{}\mbox{\hyperlink{namespacego__to__point}{go\+\_\+to\+\_\+point}}\textquotesingle{} behaviour\+:
+\begin{DoxyEnumerate}
+\item a random goal is issued (a {\itshape pose}, \mbox{[}x,y,theta\mbox{]});
+\item the robot orients itself towards the \mbox{[}x,y\mbox{]} destination;
+\item it then drives straight to that position (adjusting the orientation if need be);
+\item having reached the \mbox{[}x,y\mbox{]} goal position the robot turns in place in order to match the goal {\itshape theta};
+\item if the user does not stop the robot G\+O\+TO step 1, otherwise stay still until asked to start again, then G\+O\+TO step 1;
+\end{DoxyEnumerate}
+
+Since the user request is here implemented as an action it can be preempted, stoppinng the robot at any time and then restarting it when issuing a new goal.\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{Content Explanation}\label{md__r_e_a_d_m_e_autotoc_md3}
+Two nodes are implemented as python scripts
+\begin{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{go__to__point_8py}{go\+\_\+to\+\_\+point.\+py}}}}\+: the action server managing the robot speed control depending on the goal received.
+\item {\bfseries{\mbox{\hyperlink{user__interface_8py}{user\+\_\+interface.\+py}}}}\+: the simple command line user interface, which sends the requests to start/stop the \mbox{\hyperlink{namespacego__to__point}{go\+\_\+to\+\_\+point}} behaviour.
+\end{DoxyItemize}
+
+Whilst the last two are C++ based nodes
+\begin{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{position__service_8cpp}{position\+\_\+service.\+cpp}}}}\+: the server generating a random pose \mbox{[}x,y,theta\mbox{]} as a response to a request.
+\item {\bfseries{\mbox{\hyperlink{state__machine_8cpp}{state\+\_\+machine.\+cpp}}}}\+: the F\+SM managing the request of a new goal pose when needed, sending it as a goal to \textquotesingle{}\mbox{\hyperlink{namespacego__to__point}{go\+\_\+to\+\_\+point}}\textquotesingle{} action server.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+Finally, the control can be applied to a robot simulated using Coppeliasim (see {\bfseries{Requirements}}), for which two scenes are here presented
+\begin{DoxyItemize}
+\item {\bfseries{pioneer\+\_\+scene.\+ttt}}\+: a simple scene with a Pioneer p3dx non-\/holonomic mobile robot in an empty environment.
+\item {\bfseries{robotnik\+\_\+scene.\+ttt}}\+: a simple scene with a Robotnik Summit X\+L140701 non-\/holonomic mobile robot in an empty environment.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{Compiling and Running}\label{md__r_e_a_d_m_e_autotoc_md5}
+Compilation can be carried out as always with 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{path/to/ros\_ws/\$ catkin\_make}
+\end{DoxyCode}
+
+
+Two launch files are provided\+:
+\begin{DoxyItemize}
+\item {\bfseries{sim.\+launch}}\+: to be used in order to launch all the nodes and the Gazebo simulation. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{path/to/ros\_ws/\$ roslaunch rt2\_assignment1 sim.launch}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+In this case the Gazebo simulation will automatically start.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{sim\+\_\+coppelia.\+launch}}\+: to be used in order to launch all the nodes which will communicate with the Coppelia simulation. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{path/to/ros\_ws/\$ roslaunch rt2\_assignment1 sim\_coppelia.launch}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+In this case Coppelia\+Sim must be started separately (remember to have an instance of roscore running before launching the Coppelia\+Sim executable). The simulation can be either started before or after launching the nodes, but do not try to run a new simulation when the nodes have already been running on a previous one (or the system could find itself in an initial state differente from the assumed one, never being able to reach the goal).In other terms, each time the simulation is restarted the nodes should be to, and vice-\/versa (generally).\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{Implementation Details}\label{md__r_e_a_d_m_e_autotoc_md6}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{State\+Machine}\label{md__r_e_a_d_m_e_autotoc_md7}
+The only choice worth of note probably regards the fact that the current robot state can be changed by either the user\textquotesingle{}s input (1\+: start, -\/1\+: stop) or the action reaching its goal (2\+: action ended)\+: in the latter case the state of the goal objective is retrieved, and a check is made on whether the action was succesful or not. If it succeeded then it starts again by defining a new random goal point, otherwise the robot will stop and wait for new user inputs.\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{Documentation}\label{md__r_e_a_d_m_e_autotoc_md8}
+Beside this R\+E\+A\+D\+ME further documentation of all classes and methods can be found in the {\bfseries{doc}} folder.\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysection{Requirements}\label{md__r_e_a_d_m_e_autotoc_md9}
+{\bfseries{Gazebo}} is required to run the first launch file (the scene definition is presented in this package). {\bfseries{Coppeliasim}} is required to run the second launch file \href{http://www.coppeliarobotics.com/downloads.html}{\texttt{ download link}}\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysection{Known Issues and Limitations}\label{md__r_e_a_d_m_e_autotoc_md10}
+If you try running both the Gazebo and Coppelia\+Sim and the latter seems to not respond to the nodes, whilst the user interface results frozen after having told the system to run, try to {\bfseries{kill the roscore process}}; this might be related to Gazebo overwriting some values related to the simulation (probably simulation time) and these not being appropriately \char`\"{}cleaned\char`\"{} once Gazebo is closed. 
