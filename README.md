@@ -8,10 +8,21 @@ rt2_assignment1/
   action/         - action files
     |
     Pose.action           - goal definition
+  cplScenes/      - CoppeliaSim scenes
+    |
+    pioneer_scene.ttt     - Pioneer p3dx scene
+    robotnik_scene.ttt    - Robotnik Summit XL140701 scene
+  doc/            - documentation
+    |
+    html/         - interactive html description
+      |
+      ...
+    latex/        - static latex description
+      |
+      ...
   launch/         - launch files
     |
     sim.launch            - Gazebo simulation
-    sim_bridge.launch     - python scripts only launch
     sim_coppelia.launch   - nodes only launch
   scripts/        - python scripts
     |
@@ -28,10 +39,6 @@ rt2_assignment1/
   urdf/           - robot description for Gazebo simulation
     |
     my_robot.urdf         - mobile robot description
-  cplScenes/      - CoppeliaSim scenes
-    |
-    pioneer_scene.ttt     - Pioneer p3dx scene
-    robotnik_scene.ttt    - Robotnik Summit XL140701 scene
   CMakeLists.txt  - CMake file
   README.md       - this very file
   package.xml     - manifest
