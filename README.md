@@ -2,6 +2,36 @@
 
 #### Marco Gabriele Fedozzi [50833565]
 
+```
+rt2_assignment1/
+  |
+  doc/            - documentation
+    |
+    html/         - interactive html description
+      |
+      ...
+    latex/        - static latex description
+      |
+      ...
+  launch/         - launch files
+    |
+    sim_launch.py            - nodes launch
+  src/            - C++ source code
+    |
+    position_service.cpp  - returns random position (component)
+    state_machine.cpp     - manages the FSM logic (component)
+  srv/            - custom services
+    !
+    Command.srv           - user UI input
+    Position.srv          - goal position
+    RandomPosition.srv    - bound random pose
+  CMakeLists.txt  - CMake file
+  README.md       - this very file
+  bridge_launch.sh  - bash script to launch all packages
+  mapping_rules.yaml  - mapping for ros1_bridge
+  package.xml     - manifest
+```
+
 ## Content Description
 
 The ROS2 rclcpp package here presented can dialogue with nodes written in a ROS1 package in order to control a non-holonomic mobile robot in a Gazebo environment. The user can choose to make the robot start moving or stop it: once the robot starts moving it will choose a random pose, drive towards it, and then repeat the process until being told to stop. Since the movement is here implemented as a service the user's inputs will be evaluated only once the robot reached its current goal, so it cannot be stopped "midway", but only in a goal pose.
@@ -94,7 +124,7 @@ In order to modify them to suit your system modify those lines in the `bridge_la
 ## Known Issues and Limitations
 
 Despite the service calls being implemented as asynchronous in the ROS2 components, they are translated back into blocking ones when interfaced via ros1_bridge.
-Furthermore, the implementation of that node has an intrinsic timeout for service calls which, combined to the extensive calls here used to drive the robot,
+Furthermore, the implementation of that node has an intrinsic timeout for service calls which, combined with the extensive calls here used to drive the robot,
 can lead to reported failures in calling '/user_interface' service.
 To patch that the timeout can be increased by modifying its value in the **ros1_bridge** source code,
 namely at line 314 of file **include/factory.hpp**; 60 seconds should be enough.
