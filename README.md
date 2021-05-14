@@ -31,7 +31,7 @@ rt2_assignment1/
   cplScenes/      - CoppeliaSim scenes
     |
     pioneer_scene.ttt     - Pioneer p3dx scene
-    robotnk.scene         - Robotnik Summit XL140701 scene
+    robotnik_scene.ttt    - Robotnik Summit XL140701 scene
   CMakeLists.txt  - CMake file
   README.md       - this very file
   package.xml     - manifest
