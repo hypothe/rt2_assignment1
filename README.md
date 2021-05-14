@@ -2,9 +2,43 @@
 
 #### Marco Gabriele Fedozzi [50833565]
 
-## Content Description
+```
+rt2_assignment1/
+  |
+  action/         - action files
+    |
+    Pose.action           - goal definition
+  launch/         - launch files
+    |
+    sim.launch            - Gazebo simulation
+    sim_bridge.launch     - python scripts only launch
+    sim_coppelia.launch   - nodes only launch
+  scripts/        - python scripts
+    |
+    go_to_point.py        - pyhton script controlling the robot
+    user_interface.py     - minimal command line UI
+  src/            - C++ source code
+    |
+    position_service.cpp  - returns random position
+    state_machine.cpp     - manages the FSM logic
+  srv/            - custom services
+    !
+    Command.srv           - user UI input
+    RandomPosition.srv    - bound random pose
+  urdf/           - robot description for Gazebo simulation
+    |
+    my_robot.urdf         - mobile robot description
+  cplScenes/      - CoppeliaSim scenes
+    |
+    pioneer_scene.ttt     - Pioneer p3dx scene
+    robotnk.scene         - Robotnik Summit XL140701 scene
+  CMakeLists.txt  - CMake file
+  README.md       - this very file
+  package.xml     - manifest
+```
+## Package Description
 
-This package contains 4 nodes managing the control of a mobile robot, with a simple 'go_to_point' behaviour:
+This package controls a mobile non-holonomic robot with a simple 'go_to_point' behaviour:
 1. a random goal is issued (a _pose_, [x,y,theta]);
 2. the robot orients itself towards the [x,y] destination;
 3. it then drives straight to that position (adjusting the orientation if need be);
@@ -13,13 +47,13 @@ This package contains 4 nodes managing the control of a mobile robot, with a sim
 
 Since the user request is here implemented as an action it can be preempted, stoppinng the robot at any time and then restarting it when issuing a new goal.
 
----
+## Content Explanation
 
 Two nodes are implemented as python scripts
 - **go_to_point.py**: the action server managing the robot speed control depending on the goal received.
 - **user_interface.py**:  the simple command line user interface, which sends the requests to start/stop the go_to_point behaviour.
 
-Whilst the last two are C++ based ndoes
+Whilst the last two are C++ based nodes
 - **position_service.cpp**: the server generating a random pose [x,y,theta] as a response to a request.
 - **state_machine.cpp**:  the FSM managing the request of a new goal pose when needed, sending it as a goal to 'go_to_point' action server.
 
@@ -53,7 +87,7 @@ In this case CoppeliaSim must be started separately (remember to have an instanc
 
 ### StateMachine
 
-The only choice worth of note probably regards the fact that the current robot state can be changed by either the user's input (1: start, -1: stop) or the action reaching its goal (2: action ended): in the latter case the state of the goal objective is retrieved, and a check is made on whether the action was succesful or not. If it was system starts again by defining a new random goal point, otherwise the robot will stop and wait for new user inputs.
+The only choice worth of note probably regards the fact that the current robot state can be changed by either the user's input (1: start, -1: stop) or the action reaching its goal (2: action ended): in the latter case the state of the goal objective is retrieved, and a check is made on whether the action was succesful or not. If it succeeded then it starts again by defining a new random goal point, otherwise the robot will stop and wait for new user inputs.
 
 ## Documentation
 
@@ -66,4 +100,4 @@ Beside this README further documentation of all classes and methods can be found
 
 ## Known Issues and Limitations
 
-If you try running both the Gazebo and CoppeliaSim and the latter seems to not respond to the nodes, whilst the user interface results frozen after having told the system to run try to *kill the roscore process*; this might be related to Gazebo overwriting some values related to the simulation (probably simulation time) and not these not being appropriately "cleaned" once Gazebo is closed.
+If you try running both the Gazebo and CoppeliaSim and the latter seems to not respond to the nodes, whilst the user interface results frozen after having told the system to run, try to **kill the roscore process**; this might be related to Gazebo overwriting some values related to the simulation (probably simulation time) and these not being appropriately "cleaned" once Gazebo is closed.
