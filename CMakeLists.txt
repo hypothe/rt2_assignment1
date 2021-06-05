@@ -49,17 +49,15 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+   DIRECTORY
+   msg
+)
 
 ## Generate services in the 'srv' folder
  add_service_files(
-   FILES
-   Command.srv
-   RandomPosition.srv
+   DIRECTORY
+   srv
  )
 
 ## Generate actions in the 'action' folder
@@ -70,7 +68,7 @@ add_action_files(
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
-    DEPENDENCIES actionlib_msgs
+    DEPENDENCIES actionlib_msgs  std_msgs
  )
 
 ################################################
@@ -133,8 +131,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(position_service src/position_service.cpp)
- add_executable(state_machine src/state_machine.cpp)
+add_executable(position_service src/position_service.cpp)
+add_executable(state_machine src/state_machine.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

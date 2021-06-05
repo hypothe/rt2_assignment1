@@ -5,10 +5,13 @@ from geometry_msgs.msg import Twist, Point
 from nav_msgs.msg import Odometry
 from tf import transformations
 import math
+import numpy as np
 import actionlib
 import actionlib.msg
 import rt2_assignment1.msg #this package
 from functools import partial
+
+from rt2_assignment1.msg import SetVel
 
 # robot state variables
 position_ = Point()
@@ -21,6 +24,9 @@ pub_ = None
 # action_server
 act_s = None
 
+# velocity server
+vel_s = None
+
 # parameters for control
 yaw_precision_ = math.pi / 9  # +/- 20 degree allowed
 yaw_precision_2_ = math.pi / 90  # +/- 2 degree allowed
@@ -28,9 +34,21 @@ dist_precision_ = 0.1
 kp_a = -3.0 
 kp_d = 0.2
 ub_a = 0.6
-lb_a = -0.5
 ub_d = 0.6
 
+# Chosen a message instead of a service so it 
+# can be received by multiple nodes (this + the
+# one for direct control). Also, changes in the
+# slider (notebook) appear in a burst but in
+# a continuum, woulnd't have sense to have a 
+# service request for each small temporary change
+def clbk_set_vel(msg):
+    global ub_a, ub_d
+    
+    ub_d = msg.linear
+    ub_a = msg.angular
+    rospy.loginfo("RECEIVED lin: {} ang: {}".format(msg.linear, msg.angular))
+    
 
 def clbk_odom(msg):
     """
@@ -109,10 +127,9 @@ def fix_yaw(des_yaw, next_state):
     twist_msg = Twist()
     if math.fabs(err_yaw) > yaw_precision_2_:
         twist_msg.angular.z = kp_a*err_yaw
-        if twist_msg.angular.z > ub_a:
-            twist_msg.angular.z = ub_a
-        elif twist_msg.angular.z < lb_a:
-            twist_msg.angular.z = lb_a
+        if np.abs(twist_msg.angular.z) > ub_a:
+            twist_msg.angular.z = np.sign(twist_msg.angular.z)*ub_a
+    
     pub_.publish(twist_msg)
     # state change conditions
     if math.fabs(err_yaw) <= yaw_precision_2_:
@@ -252,6 +269,9 @@ def main():
         '/go_to_point', rt2_assignment1.msg.PoseAction, go_to_point, auto_start=False) #creation of the action server
         # generally auto_start needs to go to false, or it could sometime start too early; we have to manually start
         # planning is the action binded to the callback of the action
+    
+    vel_s = rospy.Subscriber('/set_vel', SetVel, clbk_set_vel)
+    
     act_s.start()
     
     rospy.spin()
