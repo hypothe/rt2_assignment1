@@ -133,7 +133,6 @@ def fix_yaw(des_yaw, next_state):
     pub_.publish(twist_msg)
     # state change conditions
     if math.fabs(err_yaw) <= yaw_precision_2_:
-        #print ('Yaw error: [%s]' % err_yaw)
         change_state(next_state)
 #-#-#-#-#
 
@@ -165,12 +164,10 @@ def go_straight_ahead(des_pos):
         twist_msg.angular.z = kp_a*err_yaw
         pub_.publish(twist_msg)
     else: # goal pose reached
-        #print ('Position error: [%s]' % err_pos)
         change_state(2)
 
     # re-orient if needed
     if math.fabs(err_yaw) > yaw_precision_:
-        #print ('Yaw error: [%s]' % err_yaw)
         change_state(0)
 #-#-#-#-#
 
