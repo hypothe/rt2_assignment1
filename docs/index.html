@@ -88,8 +88,8 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to rt2_assignment1: Action’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a><ul>
+<li><a class="reference internal" href="#">Welcome to rt2_assignment1: Action’s documentation!</a><ul>
+<li><a class="reference internal" href="#indices">Indices</a></li>
 <li><a class="reference internal" href="#rt2-assignment1-action-documentation">rt2_assignment1: Action documentation</a></li>
 </ul>
 </li>
@@ -167,14 +167,14 @@
 <h1>Welcome to rt2_assignment1: Action’s documentation!<a class="headerlink" href="#welcome-to-rt2-assignment1-action-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="indices">
+<h2>Indices<a class="headerlink" href="#indices" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</div>
 <div class="section" id="rt2-assignment1-action-documentation">
 <h2>rt2_assignment1: Action documentation<a class="headerlink" href="#rt2-assignment1-action-documentation" title="Permalink to this headline">¶</a></h2>
 <p>Implementation of the goToPoint for a non-holonomic robot using actions.</p>
@@ -185,18 +185,20 @@
 <span class="target" id="module-go_to_point"></span><dl class="simple">
 <dt>Publishes to:</dt><dd><p>/cmd_vel (geometry_msgs.msg.Twist)</p>
 </dd>
-<dt>ServiceServer:</dt><dd><p>/set_vel (rt2_assignment1.srv.SetVel)</p>
+<dt>ServiceServer:</dt><dd><p>/set_vel (rt2_assignment1.srv.SetVel)
+requested by the jupyter notebook</p>
 </dd>
-<dt>ActionServer:</dt><dd><p>/go_to_point (rt2_assignment1.action.PoseAction)</p>
+<dt>ActionServer:</dt><dd><p>/go_to_point (rt2_assignment1.action.PoseAction)
+called by <code class="xref py py-mod docutils literal notranslate"><span class="pre">state_machine</span></code></p>
 </dd>
 </dl>
 <p>Description:</p>
-<p>This node controls the go_topoint behavior of
+<p>This node controls the go_to_point behavior of
 the non-holonomic robot via an action server.
 A FSM is used to model the behavior whenever
 a new goal pose is received:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<div><ol class="arabic simple" start="0">
 <li><p>align with the goal position</p></li>
 <li><p>go straight to the goal position</p></li>
 <li><p>align with the goal orientation</p></li>
@@ -323,9 +325,8 @@ speed from the SetVel message.</p>
 <div class="section" id="position-service">
 <h1>Position Service<a class="headerlink" href="#position-service" title="Permalink to this headline">¶</a></h1>
 <p>Node responsible for generating a random position (x, y, \theta). </p>
-<p><p>ServiceServer:</p>
-<p>/position_server (rt2_assignment1::RandomPosition)</p>
-<dl class="simple">
+<p>
+ServiceServer: /position_server (rt2_assignment1::RandomPosition)<dl class="simple">
 <dt><strong>Author</strong></dt><dd><p>Marco Gabriele Fedozzi </p>
 </dd>
 <dt><strong>Version</strong></dt><dd><p>1.0 </p>

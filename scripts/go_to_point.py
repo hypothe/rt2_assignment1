@@ -11,21 +11,23 @@ Publishes to:
 
 ServiceServer:
     /set_vel (rt2_assignment1.srv.SetVel)
+    requested by the jupyter notebook
 
 ActionServer:
     /go_to_point (rt2_assignment1.action.PoseAction)
+    called by :mod:`state_machine`
 
 Description:
 
-This node controls the go_topoint behavior of
+This node controls the go_to_point behavior of
 the non-holonomic robot via an action server.
 A FSM is used to model the behavior whenever
 a new goal pose is received:
 
-    1. align with the goal position
-    2. go straight to the goal position
-    3. align with the goal orientation
-    4. goal posoe reached
+    0. align with the goal position
+    1. go straight to the goal position
+    2. align with the goal orientation
+    3. goal posoe reached
 
 The max values for both linear and angular
 speed are updated each time a request for the

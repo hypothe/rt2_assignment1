@@ -165,21 +165,23 @@
 
 <span class="sd">ServiceServer:</span>
 <span class="sd">    /set_vel (rt2_assignment1.srv.SetVel)</span>
+<span class="sd">    requested by the jupyter notebook</span>
 
 <span class="sd">ActionServer:</span>
 <span class="sd">    /go_to_point (rt2_assignment1.action.PoseAction)</span>
+<span class="sd">    called by :mod:`state_machine`</span>
 
 <span class="sd">Description:</span>
 
-<span class="sd">This node controls the go_topoint behavior of</span>
+<span class="sd">This node controls the go_to_point behavior of</span>
 <span class="sd">the non-holonomic robot via an action server.</span>
 <span class="sd">A FSM is used to model the behavior whenever</span>
 <span class="sd">a new goal pose is received:</span>
 
-<span class="sd">    1. align with the goal position</span>
-<span class="sd">    2. go straight to the goal position</span>
-<span class="sd">    3. align with the goal orientation</span>
-<span class="sd">    4. goal posoe reached</span>
+<span class="sd">    0. align with the goal position</span>
+<span class="sd">    1. go straight to the goal position</span>
+<span class="sd">    2. align with the goal orientation</span>
+<span class="sd">    3. goal posoe reached</span>
 
 <span class="sd">The max values for both linear and angular</span>
 <span class="sd">speed are updated each time a request for the</span>
