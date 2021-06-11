@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="state__machine_8cpp" kind="file" language="C++">
+    <compoundname>state_machine.cpp</compoundname>
+    <includes local="yes">ros/ros.h</includes>
+    <includes local="yes">rt2_assignment1/Command.h</includes>
+    <includes local="yes">rt2_assignment1/RandomPosition.h</includes>
+    <includes local="yes">actionlib/client/simple_action_client.h</includes>
+    <includes local="yes">actionlib/client/terminal_state.h</includes>
+    <includes local="yes">rt2_assignment1/PoseAction.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>actionlib/client/terminal_state.h</label>
+      </node>
+      <node id="4">
+        <label>rt2_assignment1/RandomPosition.h</label>
+      </node>
+      <node id="7">
+        <label>rt2_assignment1/PoseAction.h</label>
+      </node>
+      <node id="3">
+        <label>rt2_assignment1/Command.h</label>
+      </node>
+      <node id="5">
+        <label>actionlib/client/simple_action_client.h</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="1">
+        <label>src/state_machine.cpp</label>
+        <link refid="state__machine_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Has the user commanded the robot to start moving? </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="37" column="6" bodyfile="src/state_machine.cpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Current robot state: { 0 -&gt; empty_state; 1 -&gt; start; 2 -&gt; end_reached; -1 -&gt; interrupted_goal; } </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="39" column="5" bodyfile="src/state_machine.cpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="state__machine_8cpp_1a1a9543636935547580c0657f4c7c0c2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool user_interface</definition>
+        <argsstring>(rt2_assignment1::Command::Request &amp;req, rt2_assignment1::Command::Response &amp;res)</argsstring>
+        <name>user_interface</name>
+        <param>
+          <type>rt2_assignment1::Command::Request &amp;</type>
+          <declname>req</declname>
+        </param>
+        <param>
+          <type>rt2_assignment1::Command::Response &amp;</type>
+          <declname>res</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Service callback setting the start/stop robot state</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>req</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(rt2_assignment1::Command::Request &amp;): Service request, containing the command (string). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(rt2_assignment1::Command::Response &amp;): Service response, the value of the &apos;start&apos; state (bool). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="59" column="6" bodyfile="src/state_machine.cpp" bodystart="59" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1a6997e4832c8dfd11a4928940f52fae6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void doneCllbck</definition>
+        <argsstring>(const actionlib::SimpleClientGoalState &amp;goal_state, const rt2_assignment1::PoseResultConstPtr &amp;result)</argsstring>
+        <name>doneCllbck</name>
+        <param>
+          <type>const actionlib::SimpleClientGoalState &amp;</type>
+          <declname>goal_state</declname>
+        </param>
+        <param>
+          <type>const rt2_assignment1::PoseResultConstPtr &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Callback launched at the end of the action</para>
+<para>This function is launched once the goal of of the action is reached.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>goal_state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const actionlib::SimpleClientGoalState&amp;): The goal state reached. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const rt2_assignment1::PoseResultConstPtr&amp;): The result of the action. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="81" column="6" bodyfile="src/state_machine.cpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1aba3037dad63055ba964aa37d23945167" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void activeCllbck</definition>
+        <argsstring>()</argsstring>
+        <name>activeCllbck</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Function called once the goal is issued.</para>
+<para>In this case it&apos;s empty. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="92" column="6" bodyfile="src/state_machine.cpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1ae56b2c3d7e184ce74e62e5ba6f2dd6db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void feedbackCllbck</definition>
+        <argsstring>(const rt2_assignment1::PoseFeedbackConstPtr &amp;feedback)</argsstring>
+        <name>feedbackCllbck</name>
+        <param>
+          <type>const rt2_assignment1::PoseFeedbackConstPtr &amp;</type>
+          <declname>feedback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Called each time the feedback is updated.</para>
+<para>In this case it&apos;s empty.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>feedback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const rt2_assignment1::PoseFeedbackConstPtr&amp;): The action feedback. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="103" column="6" bodyfile="src/state_machine.cpp" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/state_machine.cpp" line="108" column="5" bodyfile="src/state_machine.cpp" bodystart="108" bodyend="168"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Node issuing new goals for the robot. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Marco Gabriele Fedozzi </para>
+</simplesect>
+<simplesect kind="version"><para>1.0 </para>
+</simplesect>
+<simplesect kind="date"><para>12/05/2021</para>
+</simplesect>
+ServiceServer:<linebreak/>
+ /user_interface (rt2_assignment1::Command)</para>
+<para>ServiceClient:<linebreak/>
+ /position_server (rt2_assignment1::RandomPosition)</para>
+<para>ActionClient:<linebreak/>
+ /go_to_point (rt2_assignment1::PoseAction)</para>
+<para>Description:</para>
+<para>This node communicates with the action server for <ref refid="namespacego__to__point" kindref="compound">go_to_point</ref>, issuing new goals whenever a &apos;start&apos; request is received from the <ref refid="namespaceuser__interface" kindref="compound">user_interface</ref>. At the same time it can stop a running goal if a request for &apos;stop&apos; is received from the <ref refid="namespaceuser__interface" kindref="compound">user_interface</ref>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************/</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor">#include<sp/>&quot;ros/ros.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment1/Command.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment1/RandomPosition.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;actionlib/client/simple_action_client.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;actionlib/client/terminal_state.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment1/PoseAction.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" kindref="member">start</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="39" refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" refkind="member"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>0;<sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="comment">/****************************************/</highlight></codeline>
+<codeline lineno="59" refid="state__machine_8cpp_1a1a9543636935547580c0657f4c7c0c2b" refkind="member"><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a1a9543636935547580c0657f4c7c0c2b" kindref="member">user_interface</ref>(rt2_assignment1::Command::Request<sp/>&amp;req,<sp/>rt2_assignment1::Command::Response<sp/>&amp;res){</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(req.command<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;start&quot;</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">/****************************************/</highlight></codeline>
+<codeline lineno="81" refid="state__machine_8cpp_1a6997e4832c8dfd11a4928940f52fae6a" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a6997e4832c8dfd11a4928940f52fae6a" kindref="member">doneCllbck</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>actionlib::SimpleClientGoalState&amp;<sp/>goal_state,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rt2_assignment1::PoseResultConstPtr&amp;<sp/>result){<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>2;<sp/></highlight><highlight class="comment">/*<sp/>Goal<sp/>reached<sp/>state<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">/****************************************/</highlight></codeline>
+<codeline lineno="92" refid="state__machine_8cpp_1aba3037dad63055ba964aa37d23945167" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1aba3037dad63055ba964aa37d23945167" kindref="member">activeCllbck</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">/****************************************/</highlight></codeline>
+<codeline lineno="103" refid="state__machine_8cpp_1ae56b2c3d7e184ce74e62e5ba6f2dd6db" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1ae56b2c3d7e184ce74e62e5ba6f2dd6db" kindref="member">feedbackCllbck</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>rt2_assignment1::PoseFeedbackConstPtr&amp;<sp/>feedback){</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//ROS_INFO(&quot;FEEDBACK:<sp/>%s&quot;,<sp/>feedback-&gt;status.c_str());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;state_machine&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>ros::NodeHandle<sp/>n;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>ros::ServiceServer<sp/>service=<sp/>n.advertiseService(</highlight><highlight class="stringliteral">&quot;/user_interface&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespaceuser__interface" kindref="compound">user_interface</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>ros::ServiceClient<sp/>client_rp<sp/>=<sp/>n.serviceClient&lt;rt2_assignment1::RandomPosition&gt;(</highlight><highlight class="stringliteral">&quot;/position_server&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Action<sp/>client<sp/>of<sp/>the<sp/>Pose<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>actionlib::SimpleActionClient&lt;rt2_assignment1::PoseAction&gt;<sp/>ac(</highlight><highlight class="stringliteral">&quot;go_to_point&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>rt2_assignment1::RandomPosition<sp/>rp;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Limits<sp/>of<sp/>the<sp/>random<sp/>position<sp/>request<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/>rp.request.x_max<sp/>=<sp/>5.0;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>rp.request.x_min<sp/>=<sp/>-5.0;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/>rp.request.y_max<sp/>=<sp/>5.0;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>rp.request.y_min<sp/>=<sp/>-5.0;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/>rt2_assignment1::PoseGoal<sp/>goal;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//wait<sp/>for<sp/>the<sp/>action<sp/>server<sp/>to<sp/>come<sp/>up</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!ac.waitForServer(ros::Duration(5.0))){<sp/></highlight><highlight class="comment">//<sp/>timeout<sp/>can<sp/>be<sp/>set<sp/>also<sp/>for<sp/>the<sp/>waiforserrver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Waiting<sp/>for<sp/>the<sp/>go_to_point<sp/>action<sp/>server<sp/>to<sp/>come<sp/>up&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(ros::ok()){</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref>){</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Go<sp/>toward<sp/>the<sp/>goal,<sp/>user<sp/>called<sp/>for<sp/>&apos;start&apos;<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>client_rp.call(rp);<sp/></highlight><highlight class="comment">/*<sp/><sp/>retrieve<sp/>random<sp/>pose<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goal.x<sp/>=<sp/>rp.response.x;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goal.y<sp/>=<sp/>rp.response.y;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goal.theta<sp/>=<sp/>rp.response.theta;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG(</highlight><highlight class="stringliteral">&quot;\nGoing<sp/>to<sp/>the<sp/>position:<sp/>x=<sp/>%f<sp/>y=<sp/>%f<sp/>theta<sp/>=<sp/>%f\n&quot;</highlight><highlight class="normal">,<sp/>goal.x,<sp/>goal.y,<sp/>goal.theta);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Send<sp/>the<sp/>Random<sp/>Pose<sp/>received<sp/>as<sp/>the<sp/>Goal<sp/>for<sp/>the<sp/>Action<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ac.sendGoal(goal,<sp/>&amp;<ref refid="state__machine_8cpp_1a6997e4832c8dfd11a4928940f52fae6a" kindref="member">doneCllbck</ref>,<sp/>&amp;<ref refid="state__machine_8cpp_1aba3037dad63055ba964aa37d23945167" kindref="member">activeCllbck</ref>,<sp/>&amp;<ref refid="state__machine_8cpp_1ae56b2c3d7e184ce74e62e5ba6f2dd6db" kindref="member">feedbackCllbck</ref>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>-1:<sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>User<sp/>called<sp/>for<sp/>the<sp/>&apos;stop&apos;<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ac.cancelGoal();<sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Stop<sp/>the<sp/>action<sp/>cancelling<sp/>the<sp/>Goal<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Action<sp/>ended<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>actionlib::SimpleClientGoalState<sp/>goal_state<sp/>=<sp/>ac.getState();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(goal_state<sp/>==<sp/>actionlib::SimpleClientGoalState::SUCCEEDED){</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Action<sp/>ended<sp/>because<sp/>the<sp/>goal<sp/>was<sp/>reached<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG(</highlight><highlight class="stringliteral">&quot;Pose<sp/>goal<sp/>reached&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(goal_state<sp/>==<sp/>actionlib::SimpleClientGoalState::PREEMPTED){</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Action<sp/>ended<sp/>because<sp/>the<sp/>action<sp/>was<sp/>preeempted<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>The<sp/>robot<sp/>is<sp/>already<sp/>standing<sp/>still,<sp/>go<sp/>to<sp/>&quot;empty&quot;<sp/>state<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG(</highlight><highlight class="stringliteral">&quot;Goal<sp/>canceled&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Action<sp/>ended<sp/>because<sp/>the<sp/>robot<sp/>faileed<sp/>to<sp/>reach<sp/>the<sp/>goal<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_DEBUG(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>reach<sp/>the<sp/>goal<sp/>pose&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a89f234133d3efe315836311cbf21c64b" kindref="member">state</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/state_machine.cpp"/>
+  </compounddef>
+</doxygen>

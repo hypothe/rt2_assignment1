@@ -1,39 +1,37 @@
 #! /usr/bin/env python
 
-## @package rt2_assignment1
-# \file go_to_point.py
-# \brief Node implementing the go_to_point behavior
-# \author Carmine Recchiuto, Marco Gabriele Fedozzi
-# \version 1.2
-# \date 10/06/2021
-#
-# \details
-#
-# Publishes to:<BR>
-#   /cmd_vel (geometry_msgs.msg.Twist)
-#
-# ServiceServer:<BR>
-#   /set_vel (rt2_assignment1.srv.SetVel)
-#
-# ActionServer:<BR>
-#   /go_to_point (rt2_assignment1.action.PoseAction)
-#
-# Description:
-#
-# This node controls the go_topoint behavior of
-# the non-holonomic robot via an action server.
-# A FSM is used to model the behavior whenever
-# a new goal pose is received: <BR>
-#
-#   1. align with the goal position <BR>
-#   2. go straight to the goal position <BR>
-#   3. align with the goal orientation <BR>
-#   4. goal posoe reached <BR>
-#
-# The max values for both linear and angular
-# speed are updated each time a request for the
-# /set_vel serrvice is received.
-##
+"""
+.. module:: go_to_point
+    :platform: Unix
+    :synopsis: Node implementing the go_to_point behavior
+.. moduleauthor:: Carmine Recchiuto <carmine.recchiuto@dibris.unige.it>, Marco Gabriele Fedozzi <5083365@studenti.unige.it>
+
+Publishes to:
+    /cmd_vel (geometry_msgs.msg.Twist)
+
+ServiceServer:
+    /set_vel (rt2_assignment1.srv.SetVel)
+
+ActionServer:
+    /go_to_point (rt2_assignment1.action.PoseAction)
+
+Description:
+
+This node controls the go_topoint behavior of
+the non-holonomic robot via an action server.
+A FSM is used to model the behavior whenever
+a new goal pose is received:
+
+    1. align with the goal position
+    2. go straight to the goal position
+    3. align with the goal orientation
+    4. goal posoe reached
+
+The max values for both linear and angular
+speed are updated each time a request for the
+/set_vel service is received.
+
+"""
 
 import rospy
 from geometry_msgs.msg import Twist, Point
@@ -80,13 +78,15 @@ ub_d = 0.6
 # sense to have a  service request for each
 # small temporary change.
 def srv_set_vel(req):
-    """!
+    """
     /set_vel server
 
     Retrieve maximum linear and angular
     speed from the SetVel message.
-
-      \param req (SetVel): set_vel request.
+    
+    Args:
+        req (SetVel): set_vel request.
+        
     """
     
     global ub_a, ub_d
@@ -97,12 +97,14 @@ def srv_set_vel(req):
     return SetVelResponse()
 
 def clbk_odom(msg):
-    """!
+    """
     Odometry callback
 
     Retrieve (x,y,theta) from the Odom message.
-
-      \param msg (Odometry): odometry message.
+    
+    Args:
+        msg (Odometry): odometry message.
+        
     """
   
     global position_
@@ -122,10 +124,12 @@ def clbk_odom(msg):
 #-#-#-#-#
 
 def change_state(state):
-    """!
+    """
     Update the current global state
-
-      \param state (int):  new state
+    
+    Args:
+        state (int):  new state
+        
     """
 
     global state_
@@ -134,12 +138,15 @@ def change_state(state):
 #-#-#-#-#
 
 def normalize_angle(angle):
-    """!
+    """
     Renormalize an angle berween [-pi, pi]
 
-      \param angle (float):  input angle
+    Args:
+        angle (float):  input angle
       
-      \retval angle (float):  normalized angle
+    Returns:
+        angle (float):  normalized angle
+        
     """
 
     if(math.fabs(angle) > math.pi):
@@ -148,7 +155,7 @@ def normalize_angle(angle):
 #-#-#-#-#
 
 def fix_yaw(des_yaw, next_state):
-    """!
+    """
     Orient the robot in a desired way
 
     The function is used either to orient
@@ -159,8 +166,10 @@ def fix_yaw(des_yaw, next_state):
     one (either initial heading or final
     orientation).
 
-      \param des_yaw (float):  desired yaw
-      \param next_state (int): next state to set
+    Args:
+        des_yaw (float):  desired yaw
+        next_state (int): next state to set
+        
     """
 
     err_yaw = normalize_angle(des_yaw - yaw_)
@@ -178,14 +187,16 @@ def fix_yaw(des_yaw, next_state):
 #-#-#-#-#
 
 def go_straight_ahead(des_pos):
-    """!
+    """
     Drive toward the goal
 
     Set the linear and angular speed
     depending on the distance to the 
     goal pose.
 
-      \param des_pos (Point):  desired (x, y) position
+    Args:
+        des_pos (Point):  desired (x, y) position
+        
     """
 
     desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
@@ -212,11 +223,12 @@ def go_straight_ahead(des_pos):
 #-#-#-#-#
 
 def done():
-    """!
+    """
     Stop the robot
 
     Set the robot linear and angular 
     velocity to 0.
+    
     """
 
     twist_msg = Twist()
@@ -226,7 +238,7 @@ def done():
 #-#-#-#-#
 
 def go_to_point(goal):
-    """!
+    """
     State machine implementation
 
     Set an appropriate behaviour depending
@@ -236,7 +248,9 @@ def go_to_point(goal):
     the goal is reached or the action is
     preempted (the goal gets cancelled).
 
-      \param goal (PoseActionGoal): (x,y,theta) goal pose
+    Args:
+        goal (PoseActionGoal): (x,y,theta) goal pose
+        
     """
 
     global act_s

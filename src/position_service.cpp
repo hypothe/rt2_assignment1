@@ -8,7 +8,7 @@
 *
 * \details
 *
-* ServiceServer:<BR>
+* ServiceServer:
 *   /position_server (rt2_assignment1::RandomPosition)
 *
 * Description:
