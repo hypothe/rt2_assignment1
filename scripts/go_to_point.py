@@ -12,8 +12,8 @@
 # Publishes to:<BR>
 #   /cmd_vel (geometry_msgs.msg.Twist)
 #
-# Subscribes to:<BR>
-#   /set_vel (rt2_assignment1.msg.SetVel)
+# ServiceServer:<BR>
+#   /set_vel (rt2_assignment1.srv.SetVel)
 #
 # ActionServer:<BR>
 #   /go_to_point (rt2_assignment1.action.PoseAction)
@@ -24,14 +24,15 @@
 # the non-holonomic robot via an action server.
 # A FSM is used to model the behavior whenever
 # a new goal pose is received: <BR>
-#   0. align with the goal position <BR>
-#   1. go straight to the goal position <BR>
-#   2. align with the goal orientation <BR>
-#   3. goal posoe reached <BR>
+#
+#   1. align with the goal position <BR>
+#   2. go straight to the goal position <BR>
+#   3. align with the goal orientation <BR>
+#   4. goal posoe reached <BR>
 #
 # The max values for both linear and angular
-# speed are updated each time the subscriber
-# to /set_vel receives a message
+# speed are updated each time a request for the
+# /set_vel serrvice is received.
 ##
 
 import rospy
@@ -45,7 +46,7 @@ import actionlib.msg
 import rt2_assignment1.msg #this package
 from functools import partial
 
-from rt2_assignment1.msg import SetVel
+from rt2_assignment1.srv import SetVel, SetVelResponse, Command
 
 # robot state variables
 position_ = Point()
@@ -58,7 +59,7 @@ pub_ = None
 ## action_server
 act_s = None
 
-## velocity subscrber
+## velocity server
 vel_s = None
 
 # parameters for control
@@ -78,23 +79,22 @@ ub_d = 0.6
 # in a burst but in a continuum, woulnd't have
 # sense to have a  service request for each
 # small temporary change.
-def clbk_set_vel(msg):
+def srv_set_vel(req):
     """!
-    /set_vel callback
+    /set_vel server
 
     Retrieve maximum linear and angular
     speed from the SetVel message.
 
-    Args:
-      msg (SetVel): set_vel message.
+      \param req (SetVel): set_vel request.
     """
     
     global ub_a, ub_d
     
-    ub_d = msg.linear
-    ub_a = msg.angular
-    rospy.logdebug("RECEIVED lin: {} ang: {}".format(msg.linear, msg.angular))
-    
+    ub_d = req.linear
+    ub_a = req.angular
+    rospy.logdebug("RECEIVED lin: {} ang: {}".format(req.linear, req.angular))
+    return SetVelResponse()
 
 def clbk_odom(msg):
     """!
@@ -102,8 +102,7 @@ def clbk_odom(msg):
 
     Retrieve (x,y,theta) from the Odom message.
 
-    Args:
-      msg (Odometry): odometry message.
+      \param msg (Odometry): odometry message.
     """
   
     global position_
@@ -126,8 +125,7 @@ def change_state(state):
     """!
     Update the current global state
 
-    Args:
-      state (int):  new state
+      \param state (int):  new state
     """
 
     global state_
@@ -139,11 +137,9 @@ def normalize_angle(angle):
     """!
     Renormalize an angle berween [-pi, pi]
 
-    Args:
-      angle (float):  input angle
+      \param angle (float):  input angle
       
-    Returns:
-      angle (float):  normalized angle
+      \retval angle (float):  normalized angle
     """
 
     if(math.fabs(angle) > math.pi):
@@ -163,9 +159,8 @@ def fix_yaw(des_yaw, next_state):
     one (either initial heading or final
     orientation).
 
-    Args:
-      des_yaw (float):  desired yaw
-      next_state (int): next state to set
+      \param des_yaw (float):  desired yaw
+      \param next_state (int): next state to set
     """
 
     err_yaw = normalize_angle(des_yaw - yaw_)
@@ -190,8 +185,7 @@ def go_straight_ahead(des_pos):
     depending on the distance to the 
     goal pose.
 
-    Args:
-      des_pos (Point):  desired (x, y) position
+      \param des_pos (Point):  desired (x, y) position
     """
 
     desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
@@ -242,8 +236,7 @@ def go_to_point(goal):
     the goal is reached or the action is
     preempted (the goal gets cancelled).
 
-    Args:
-      goal (PoseActionGoal): (x,y,theta) goal pose
+      \param goal (PoseActionGoal): (x,y,theta) goal pose
     """
 
     global act_s
@@ -304,16 +297,17 @@ def go_to_point(goal):
 #-#-#-#-#
 
 def main():
-    global pub_, act_s
+    global pub_, act_s, vel_s
     rospy.init_node('go_to_point')
     pub_ = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
     sub_odom = rospy.Subscriber('/odom', Odometry, clbk_odom)
+    vel_s = rospy.Service('/set_vel', SetVel, srv_set_vel)
     act_s = actionlib.SimpleActionServer(
         '/go_to_point', rt2_assignment1.msg.PoseAction, go_to_point, auto_start=False) #creation of the action server
         # generally auto_start needs to go to false, or it could sometime start too early; we have to manually start
         # planning is the action binded to the callback of the action
     
-    vel_s = rospy.Subscriber('/set_vel', SetVel, clbk_set_vel)
+    #vel_s = rospy.Subscriber('/set_vel', SetVel, clbk_set_vel)
     
     act_s.start()
     

@@ -1,5 +1,0 @@
-# Message to set linear and angular speed of go_to_point behaviour
-
-float32 linear
-
-float32 angular
