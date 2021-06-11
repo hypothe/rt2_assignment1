@@ -2,6 +2,7 @@
 
 #### Marco Gabriele Fedozzi [50833565]
 
+Software documentation can be found [here](https://hypothe.github.io/rt2_assignment1/).
 ```
 rt2_assignment1/
   |
