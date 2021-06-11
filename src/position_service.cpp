@@ -1,3 +1,24 @@
+/****************************************//**
+* \file position_service.cpp
+* \brief Node responsible for generating 
+*	a random position (x, y, \theta).
+* \author Marco Gabriele Fedozzi
+* \version 1.0
+* \date 12/05/2021
+*
+* \details
+*
+* ServiceServer:<BR>
+*   /position_server (rt2_assignment1::RandomPosition)
+*
+* Description:
+*
+* This node replies to a request for a random
+* pose (x, y, \theta) with a random pose bounded
+* by the limits passed in the request.
+
+********************************************/
+
 #include "ros/ros.h"
 #include "rt2_assignment1/RandomPosition.h"
 

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ub_5fa_68',['ub_a',['../namespacego__to__point.html#acb4e14986fafe5cb73bb8ad0c178869d',1,'go_to_point']]],
-  ['ub_5fd_69',['ub_d',['../namespacego__to__point.html#a16c473b9e717200c483d18e66b48152a',1,'go_to_point']]]
+  ['vel_5fs_71',['vel_s',['../namespacego__to__point.html#a354fba5ca969f353a94d6131040611b9',1,'go_to_point']]]
 ];

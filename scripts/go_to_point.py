@@ -1,5 +1,39 @@
 #! /usr/bin/env python
 
+## @package rt2_assignment1
+# \file go_to_point.py
+# \brief Node implementing the go_to_point behavior
+# \author Carmine Recchiuto, Marco Gabriele Fedozzi
+# \version 1.2
+# \date 10/06/2021
+#
+# \details
+#
+# Publishes to:<BR>
+#   /cmd_vel (geometry_msgs.msg.Twist)
+#
+# Subscribes to:<BR>
+#   /set_vel (rt2_assignment1.msg.SetVel)
+#
+# ActionServer:<BR>
+#   /go_to_point (rt2_assignment1.action.PoseAction)
+#
+# Description:
+#
+# This node controls the go_topoint behavior of
+# the non-holonomic robot via an action server.
+# A FSM is used to model the behavior whenever
+# a new goal pose is received: <BR>
+#   0. align with the goal position <BR>
+#   1. go straight to the goal position <BR>
+#   2. align with the goal orientation <BR>
+#   3. goal posoe reached <BR>
+#
+# The max values for both linear and angular
+# speed are updated each time the subscriber
+# to /set_vel receives a message
+##
+
 import rospy
 from geometry_msgs.msg import Twist, Point
 from nav_msgs.msg import Odometry
@@ -18,13 +52,13 @@ position_ = Point()
 yaw_ = 0
 position_ = 0
 state_ = 0
-# publisher
+## publisher
 pub_ = None
 
-# action_server
+## action_server
 act_s = None
 
-# velocity server
+## velocity subscrber
 vel_s = None
 
 # parameters for control
@@ -33,25 +67,37 @@ yaw_precision_2_ = math.pi / 90  # +/- 2 degree allowed
 dist_precision_ = 0.1
 kp_a = -3.0 
 kp_d = 0.2
+## Maximum angular speed
 ub_a = 0.6
+## Maximum linear speed
 ub_d = 0.6
 
 # Chosen a message instead of a service so it 
-# can be received by multiple nodes (this + the
-# one for direct control). Also, changes in the
-# slider (notebook) appear in a burst but in
-# a continuum, woulnd't have sense to have a 
-# service request for each small temporary change
+# can be received by multiple nodes.
+# Also, changes in the slider (notebook) appear
+# in a burst but in a continuum, woulnd't have
+# sense to have a  service request for each
+# small temporary change.
 def clbk_set_vel(msg):
+    """!
+    /set_vel callback
+
+    Retrieve maximum linear and angular
+    speed from the SetVel message.
+
+    Args:
+      msg (SetVel): set_vel message.
+    """
+    
     global ub_a, ub_d
     
     ub_d = msg.linear
     ub_a = msg.angular
-    rospy.loginfo("RECEIVED lin: {} ang: {}".format(msg.linear, msg.angular))
+    rospy.logdebug("RECEIVED lin: {} ang: {}".format(msg.linear, msg.angular))
     
 
 def clbk_odom(msg):
-    """
+    """!
     Odometry callback
 
     Retrieve (x,y,theta) from the Odom message.
@@ -77,7 +123,7 @@ def clbk_odom(msg):
 #-#-#-#-#
 
 def change_state(state):
-    """
+    """!
     Update the current global state
 
     Args:
@@ -90,7 +136,7 @@ def change_state(state):
 #-#-#-#-#
 
 def normalize_angle(angle):
-    """
+    """!
     Renormalize an angle berween [-pi, pi]
 
     Args:
@@ -106,7 +152,7 @@ def normalize_angle(angle):
 #-#-#-#-#
 
 def fix_yaw(des_yaw, next_state):
-    """
+    """!
     Orient the robot in a desired way
 
     The function is used either to orient
@@ -137,7 +183,7 @@ def fix_yaw(des_yaw, next_state):
 #-#-#-#-#
 
 def go_straight_ahead(des_pos):
-    """
+    """!
     Drive toward the goal
 
     Set the linear and angular speed
@@ -172,7 +218,7 @@ def go_straight_ahead(des_pos):
 #-#-#-#-#
 
 def done():
-    """
+    """!
     Stop the robot
 
     Set the robot linear and angular 
@@ -186,7 +232,7 @@ def done():
 #-#-#-#-#
 
 def go_to_point(goal):
-    """
+    """!
     State machine implementation
 
     Set an appropriate behaviour depending

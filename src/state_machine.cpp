@@ -1,13 +1,40 @@
+/****************************************//**
+* \file state_machine.cpp
+* \brief Node issuing new goals for the robot
+* \author Marco Gabriele Fedozzi
+* \version 1.0
+* \date 12/05/2021
+*
+* \details
+*
+* ServiceServer:<BR>
+*   /user_interface (rt2_assignment1::Command)
+*
+* ServiceClient:<BR>
+*   /position_server (rt2_assignment1::RandomPosition)
+*
+* ActionClient:<BR>
+*   /go_to_point (rt2_assignment1::PoseAction)
+*
+* Description:
+*
+* This node communicates with the action server for
+* go_to_point, issuing new goals whenever a 'start'
+* request is received from the user_interface.
+* At the same time it can stop a running goal
+* if a request for 'stop' is received from the
+* user_interface.
+
+********************************************/
 #include "ros/ros.h"
 #include "rt2_assignment1/Command.h"
-//#include "rt2_assignment1/Position.h" /*   Now it's an action   */
 #include "rt2_assignment1/RandomPosition.h"
 
 #include "actionlib/client/simple_action_client.h"
 #include "actionlib/client/terminal_state.h"
 #include "rt2_assignment1/PoseAction.h"
 
-bool start = false; /*!< Has the user commanded the robot to start moving */
+bool start = false; /*!< Has the user commanded the robot to start moving? */
 
 int state = 0;  /*!< Current robot state:
                     {

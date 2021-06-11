@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>rt2_assignment1(action): src/state_machine.cpp File Reference</title>
+<title>RT2_assignment1:Action: src/state_machine.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">rt2_assignment1(action)
+   <div id="projectname">RT2_assignment1:Action
+   &#160;<span id="projectnumber">0.6</span>
    </div>
+   <div id="projectbrief">The action implementation of a non-holonomic robot control</div>
   </td>
  </tr>
  </tbody>
@@ -72,6 +74,9 @@ $(function() {
 <div class="title">state_machine.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Node issuing new goals for the robot.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;ros/ros.h&quot;</code><br />
 <code>#include &quot;rt2_assignment1/Command.h&quot;</code><br />
 <code>#include &quot;rt2_assignment1/RandomPosition.h&quot;</code><br />
@@ -83,7 +88,7 @@ Include dependency graph for state_machine.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="state__machine_8cpp__incl.png" border="0" usemap="#src_2state__machine_8cpp" alt=""/></div>
 <map name="src_2state__machine_8cpp" id="src_2state__machine_8cpp">
-<area shape="rect" title=" " alt="" coords="507,5,675,32"/>
+<area shape="rect" title="Node issuing new goals for the robot." alt="" coords="507,5,675,32"/>
 <area shape="rect" title=" " alt="" coords="5,87,84,114"/>
 <area shape="rect" title=" " alt="" coords="108,87,323,114"/>
 <area shape="rect" title=" " alt="" coords="347,87,601,114"/>
@@ -115,7 +120,22 @@ Variables</h2></td></tr>
 <tr class="memitem:a89f234133d3efe315836311cbf21c64b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="state__machine_8cpp.html#a89f234133d3efe315836311cbf21c64b">state</a> = 0</td></tr>
 <tr class="separator:a89f234133d3efe315836311cbf21c64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Node issuing new goals for the robot. </p>
+<dl class="section author"><dt>Author</dt><dd>Marco Gabriele Fedozzi </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>12/05/2021</dd></dl>
+<p>ServiceServer:<br  />
+ /user_interface (rt2_assignment1::Command)</p>
+<p>ServiceClient:<br  />
+ /position_server (rt2_assignment1::RandomPosition)</p>
+<p>ActionClient:<br  />
+ /go_to_point (rt2_assignment1::PoseAction)</p>
+<p>Description:</p>
+<p>This node communicates with the action server for <a class="el" href="namespacego__to__point.html">go_to_point</a>, issuing new goals whenever a 'start' request is received from the <a class="el" href="namespaceuser__interface.html">user_interface</a>. At the same time it can stop a running goal if a request for 'stop' is received from the <a class="el" href="namespaceuser__interface.html">user_interface</a>. </p>
+
+<p class="definition">Definition in file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="aba3037dad63055ba964aa37d23945167"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba3037dad63055ba964aa37d23945167">&#9670;&nbsp;</a></span>activeCllbck()</h2>
 
@@ -133,7 +153,7 @@ Variables</h2></td></tr>
 <p>Function called once the goal is issued.</p>
 <p>In this case it's empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00065">65</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00092">92</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>
@@ -172,7 +192,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00054">54</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00081">81</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>
@@ -200,7 +220,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00076">76</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00103">103</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>
@@ -230,7 +250,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00081">81</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00108">108</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +288,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00032">32</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00059">59</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,7 +306,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Has the user commanded the robot to start moving </p>
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00010">10</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00037">37</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,7 +323,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Current robot state: { 0 -&gt; empty_state; 1 -&gt; start; 2 -&gt; end_reached; -1 -&gt; interrupted_goal; } </p>
 
-<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00012">12</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="state__machine_8cpp_source.html#l00039">39</a> of file <a class="el" href="state__machine_8cpp_source.html">state_machine.cpp</a>.</p>
 
 </div>
 </div>

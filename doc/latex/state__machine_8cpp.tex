@@ -1,12 +1,18 @@
 \hypertarget{state__machine_8cpp}{}\doxysection{src/state\+\_\+machine.cpp File Reference}
 \label{state__machine_8cpp}\index{src/state\_machine.cpp@{src/state\_machine.cpp}}
+
+
+Node issuing new goals for the robot.  
+
+
 {\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}rt2\+\_\+assignment1/\+Command.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}rt2\+\_\+assignment1/\+Random\+Position.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}actionlib/client/simple\+\_\+action\+\_\+client.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}actionlib/client/terminal\+\_\+state.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}rt2\+\_\+assignment1/\+Pose\+Action.\+h\char`\"{}}\newline
-Include dependency graph for state\+\_\+machine.\+cpp\+:\nopagebreak
+Include dependency graph for state\+\_\+machine.\+cpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,6 +41,31 @@ int \mbox{\hyperlink{state__machine_8cpp_a89f234133d3efe315836311cbf21c64b}{stat
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Node issuing new goals for the robot. 
+
+\begin{DoxyAuthor}{Author}
+Marco Gabriele Fedozzi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12/05/2021
+\end{DoxyDate}
+Service\+Server\+:~\newline
+ /user\+\_\+interface (rt2\+\_\+assignment1\+::\+Command)
+
+Service\+Client\+:~\newline
+ /position\+\_\+server (rt2\+\_\+assignment1\+::\+Random\+Position)
+
+Action\+Client\+:~\newline
+ /go\+\_\+to\+\_\+point (rt2\+\_\+assignment1\+::\+Pose\+Action)
+
+Description\+:
+
+This node communicates with the action server for \mbox{\hyperlink{namespacego__to__point}{go\+\_\+to\+\_\+point}}, issuing new goals whenever a \textquotesingle{}start\textquotesingle{} request is received from the \mbox{\hyperlink{namespaceuser__interface}{user\+\_\+interface}}. At the same time it can stop a running goal if a request for \textquotesingle{}stop\textquotesingle{} is received from the \mbox{\hyperlink{namespaceuser__interface}{user\+\_\+interface}}. 
+
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{state__machine_8cpp_aba3037dad63055ba964aa37d23945167}\label{state__machine_8cpp_aba3037dad63055ba964aa37d23945167}} 
 \index{state\_machine.cpp@{state\_machine.cpp}!activeCllbck@{activeCllbck}}
@@ -46,7 +77,7 @@ Function called once the goal is issued.
 
 In this case it\textquotesingle{}s empty. 
 
-Definition at line 65 of file state\+\_\+machine.\+cpp.
+Definition at line 92 of file state\+\_\+machine.\+cpp.
 
 \mbox{\Hypertarget{state__machine_8cpp_a6997e4832c8dfd11a4928940f52fae6a}\label{state__machine_8cpp_a6997e4832c8dfd11a4928940f52fae6a}} 
 \index{state\_machine.cpp@{state\_machine.cpp}!doneCllbck@{doneCllbck}}
@@ -67,7 +98,7 @@ This function is launched once the goal of of the action is reached.
 \end{DoxyParams}
 
 
-Definition at line 54 of file state\+\_\+machine.\+cpp.
+Definition at line 81 of file state\+\_\+machine.\+cpp.
 
 \mbox{\Hypertarget{state__machine_8cpp_ae56b2c3d7e184ce74e62e5ba6f2dd6db}\label{state__machine_8cpp_ae56b2c3d7e184ce74e62e5ba6f2dd6db}} 
 \index{state\_machine.cpp@{state\_machine.cpp}!feedbackCllbck@{feedbackCllbck}}
@@ -86,7 +117,7 @@ In this case it\textquotesingle{}s empty.
 \end{DoxyParams}
 
 
-Definition at line 76 of file state\+\_\+machine.\+cpp.
+Definition at line 103 of file state\+\_\+machine.\+cpp.
 
 \mbox{\Hypertarget{state__machine_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{state__machine_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
 \index{state\_machine.cpp@{state\_machine.cpp}!main@{main}}
@@ -96,7 +127,7 @@ Definition at line 76 of file state\+\_\+machine.\+cpp.
 
 
 
-Definition at line 81 of file state\+\_\+machine.\+cpp.
+Definition at line 108 of file state\+\_\+machine.\+cpp.
 
 \mbox{\Hypertarget{state__machine_8cpp_a1a9543636935547580c0657f4c7c0c2b}\label{state__machine_8cpp_a1a9543636935547580c0657f4c7c0c2b}} 
 \index{state\_machine.cpp@{state\_machine.cpp}!user\_interface@{user\_interface}}
@@ -115,7 +146,7 @@ Service callback setting the start/stop robot state
 \end{DoxyParams}
 
 
-Definition at line 32 of file state\+\_\+machine.\+cpp.
+Definition at line 59 of file state\+\_\+machine.\+cpp.
 
 
 
@@ -128,7 +159,7 @@ Definition at line 32 of file state\+\_\+machine.\+cpp.
 
 Has the user commanded the robot to start moving 
 
-Definition at line 10 of file state\+\_\+machine.\+cpp.
+Definition at line 37 of file state\+\_\+machine.\+cpp.
 
 \mbox{\Hypertarget{state__machine_8cpp_a89f234133d3efe315836311cbf21c64b}\label{state__machine_8cpp_a89f234133d3efe315836311cbf21c64b}} 
 \index{state\_machine.cpp@{state\_machine.cpp}!state@{state}}
@@ -138,5 +169,5 @@ Definition at line 10 of file state\+\_\+machine.\+cpp.
 
 Current robot state\+: \{ 0 -\/$>$ empty\+\_\+state; 1 -\/$>$ start; 2 -\/$>$ end\+\_\+reached; -\/1 -\/$>$ interrupted\+\_\+goal; \} 
 
-Definition at line 12 of file state\+\_\+machine.\+cpp.
+Definition at line 39 of file state\+\_\+machine.\+cpp.
 

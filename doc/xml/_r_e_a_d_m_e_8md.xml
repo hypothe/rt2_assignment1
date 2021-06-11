@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Research<sp/>Track<sp/>2<sp/>-<sp/>assignment<sp/>1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Marco<sp/>Gabriele<sp/>Fedozzi<sp/>[50833565]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">rt2_assignment1/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>action/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>action<sp/>files</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Pose.action<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>goal<sp/>definition</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cplScenes/<sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>CoppeliaSim<sp/>scenes</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pioneer_scene.ttt<sp/><sp/><sp/><sp/><sp/>-<sp/>Pioneer<sp/>p3dx<sp/>scene</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>robotnik_scene.ttt<sp/><sp/><sp/><sp/>-<sp/>Robotnik<sp/>Summit<sp/>XL140701<sp/>scene</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>doc/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>documentation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>html/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>interactive<sp/>html<sp/>description</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>latex/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>static<sp/>latex<sp/>description</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>launch/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>launch<sp/>files</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sim.launch<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Gazebo<sp/>simulation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sim_coppelia.launch<sp/><sp/><sp/>-<sp/>nodes<sp/>only<sp/>launch</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>scripts/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>python<sp/>scripts</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>go_to_point.py<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>pyhton<sp/>script<sp/>controlling<sp/>the<sp/>robot</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_interface.py<sp/><sp/><sp/><sp/><sp/>-<sp/>minimal<sp/>command<sp/>line<sp/>UI</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>src/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>C++<sp/>source<sp/>code</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>position_service.cpp<sp/><sp/>-<sp/>returns<sp/>random<sp/>position</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>state_machine.cpp<sp/><sp/><sp/><sp/><sp/>-<sp/>manages<sp/>the<sp/>FSM<sp/>logic</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>srv/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>custom<sp/>services</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>!</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Command.srv<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>user<sp/>UI<sp/>input</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>RandomPosition.srv<sp/><sp/><sp/><sp/>-<sp/>bound<sp/>random<sp/>pose</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>urdf/<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>robot<sp/>description<sp/>for<sp/>Gazebo<sp/>simulation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>my_robot.urdf<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>mobile<sp/>robot<sp/>description</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>CMakeLists.txt<sp/><sp/>-<sp/>CMake<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>README.md<sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>this<sp/>very<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>package.xml<sp/><sp/><sp/><sp/><sp/>-<sp/>manifest</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Package<sp/>Description</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>package<sp/>controls<sp/>a<sp/>mobile<sp/>non-holonomic<sp/>robot<sp/>with<sp/>a<sp/>simple<sp/>&apos;go_to_point&apos;<sp/>behaviour:</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>a<sp/>random<sp/>goal<sp/>is<sp/>issued<sp/>(a<sp/>_pose_,<sp/>[x,y,theta]);</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>the<sp/>robot<sp/>orients<sp/>itself<sp/>towards<sp/>the<sp/>[x,y]<sp/>destination;</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>it<sp/>then<sp/>drives<sp/>straight<sp/>to<sp/>that<sp/>position<sp/>(adjusting<sp/>the<sp/>orientation<sp/>if<sp/>need<sp/>be);</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>having<sp/>reached<sp/>the<sp/>[x,y]<sp/>goal<sp/>position<sp/>the<sp/>robot<sp/>turns<sp/>in<sp/>place<sp/>in<sp/>order<sp/>to<sp/>match<sp/>the<sp/>goal<sp/>_theta_;</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>if<sp/>the<sp/>user<sp/>does<sp/>not<sp/>stop<sp/>the<sp/>robot<sp/>GOTO<sp/>step<sp/>1,<sp/>otherwise<sp/>stay<sp/>still<sp/>until<sp/>asked<sp/>to<sp/>start<sp/>again,<sp/>then<sp/>GOTO<sp/>step<sp/>1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Since<sp/>the<sp/>user<sp/>request<sp/>is<sp/>here<sp/>implemented<sp/>as<sp/>an<sp/>action<sp/>it<sp/>can<sp/>be<sp/>preempted,<sp/>stoppinng<sp/>the<sp/>robot<sp/>at<sp/>any<sp/>time<sp/>and<sp/>then<sp/>restarting<sp/>it<sp/>when<sp/>issuing<sp/>a<sp/>new<sp/>goal.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Content<sp/>Explanation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Two<sp/>nodes<sp/>are<sp/>implemented<sp/>as<sp/>python<sp/>scripts</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**go_to_point.py**:<sp/>the<sp/>action<sp/>server<sp/>managing<sp/>the<sp/>robot<sp/>speed<sp/>control<sp/>depending<sp/>on<sp/>the<sp/>goal<sp/>received.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**user_interface.py**:<sp/><sp/>the<sp/>simple<sp/>command<sp/>line<sp/>user<sp/>interface,<sp/>which<sp/>sends<sp/>the<sp/>requests<sp/>to<sp/>start/stop<sp/>the<sp/>go_to_point<sp/>behaviour.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Whilst<sp/>the<sp/>last<sp/>two<sp/>are<sp/>C++<sp/>based<sp/>nodes</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**position_service.cpp**:<sp/>the<sp/>server<sp/>generating<sp/>a<sp/>random<sp/>pose<sp/>[x,y,theta]<sp/>as<sp/>a<sp/>response<sp/>to<sp/>a<sp/>request.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**state_machine.cpp**:<sp/><sp/>the<sp/>FSM<sp/>managing<sp/>the<sp/>request<sp/>of<sp/>a<sp/>new<sp/>goal<sp/>pose<sp/>when<sp/>needed,<sp/>sending<sp/>it<sp/>as<sp/>a<sp/>goal<sp/>to<sp/>&apos;go_to_point&apos;<sp/>action<sp/>server.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Finally,<sp/>the<sp/>control<sp/>can<sp/>be<sp/>applied<sp/>to<sp/>a<sp/>robot<sp/>simulated<sp/>using<sp/>Coppeliasim<sp/>(see<sp/>**Requirements**),<sp/>for<sp/>which<sp/>two<sp/>scenes<sp/>are<sp/>here<sp/>presented</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**pioneer_scene.ttt**:<sp/>a<sp/>simple<sp/>scene<sp/>with<sp/>a<sp/>Pioneer<sp/>p3dx<sp/>non-holonomic<sp/>mobile<sp/>robot<sp/>in<sp/>an<sp/>empty<sp/>environment.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**robotnik_scene.ttt**:<sp/>a<sp/>simple<sp/>scene<sp/>with<sp/>a<sp/>Robotnik<sp/>Summit<sp/>XL140701<sp/>non-holonomic<sp/>mobile<sp/>robot<sp/>in<sp/>an<sp/>empty<sp/>environment.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Compiling<sp/>and<sp/>Running</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Compilation<sp/>can<sp/>be<sp/>carried<sp/>out<sp/>as<sp/>always<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">path/to/ros_ws/$<sp/>catkin_make</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Two<sp/>launch<sp/>files<sp/>are<sp/>provided:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**sim.launch**:<sp/>to<sp/>be<sp/>used<sp/>in<sp/>order<sp/>to<sp/>launch<sp/>all<sp/>the<sp/>nodes<sp/>and<sp/>the<sp/>Gazebo<sp/>simulation.</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">path/to/ros_ws/$<sp/>roslaunch<sp/>rt2_assignment1<sp/>sim.launch</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">In<sp/>this<sp/>case<sp/>the<sp/>Gazebo<sp/>simulation<sp/>will<sp/>automatically<sp/>start.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**sim_coppelia.launch**:<sp/>to<sp/>be<sp/>used<sp/>in<sp/>order<sp/>to<sp/>launch<sp/>all<sp/>the<sp/>nodes<sp/>which<sp/>will<sp/>communicate<sp/>with<sp/>the<sp/>Coppelia<sp/>simulation.</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">path/to/ros_ws/$<sp/>roslaunch<sp/>rt2_assignment1<sp/>sim_coppelia.launch</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">In<sp/>this<sp/>case<sp/>CoppeliaSim<sp/>must<sp/>be<sp/>started<sp/>separately<sp/>(remember<sp/>to<sp/>have<sp/>an<sp/>instance<sp/>of<sp/>roscore<sp/>running<sp/>before<sp/>launching<sp/>the<sp/>CoppeliaSim<sp/>executable).<sp/>The<sp/>simulation<sp/>can<sp/>be<sp/>either<sp/>started<sp/>before<sp/>or<sp/>after<sp/>launching<sp/>the<sp/>nodes,<sp/>but<sp/>do<sp/>not<sp/>try<sp/>to<sp/>run<sp/>a<sp/>new<sp/>simulation<sp/>when<sp/>the<sp/>nodes<sp/>have<sp/>already<sp/>been<sp/>running<sp/>on<sp/>a<sp/>previous<sp/>one<sp/>(or<sp/>the<sp/>system<sp/>could<sp/>find<sp/>itself<sp/>in<sp/>an<sp/>initial<sp/>state<sp/>differente<sp/>from<sp/>the<sp/>assumed<sp/>one,<sp/>never<sp/>being<sp/>able<sp/>to<sp/>reach<sp/>the<sp/>goal).In<sp/>other<sp/>terms,<sp/>each<sp/>time<sp/>the<sp/>simulation<sp/>is<sp/>restarted<sp/>the<sp/>nodes<sp/>should<sp/>be<sp/>to,<sp/>and<sp/>vice-versa<sp/>(generally).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Implementation<sp/>Details</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>StateMachine</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>only<sp/>choice<sp/>worth<sp/>of<sp/>note<sp/>probably<sp/>regards<sp/>the<sp/>fact<sp/>that<sp/>the<sp/>current<sp/>robot<sp/>state<sp/>can<sp/>be<sp/>changed<sp/>by<sp/>either<sp/>the<sp/>user&apos;s<sp/>input<sp/>(1:<sp/>start,<sp/>-1:<sp/>stop)<sp/>or<sp/>the<sp/>action<sp/>reaching<sp/>its<sp/>goal<sp/>(2:<sp/>action<sp/>ended):<sp/>in<sp/>the<sp/>latter<sp/>case<sp/>the<sp/>state<sp/>of<sp/>the<sp/>goal<sp/>objective<sp/>is<sp/>retrieved,<sp/>and<sp/>a<sp/>check<sp/>is<sp/>made<sp/>on<sp/>whether<sp/>the<sp/>action<sp/>was<sp/>succesful<sp/>or<sp/>not.<sp/>If<sp/>it<sp/>succeeded<sp/>then<sp/>it<sp/>starts<sp/>again<sp/>by<sp/>defining<sp/>a<sp/>new<sp/>random<sp/>goal<sp/>point,<sp/>otherwise<sp/>the<sp/>robot<sp/>will<sp/>stop<sp/>and<sp/>wait<sp/>for<sp/>new<sp/>user<sp/>inputs.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Beside<sp/>this<sp/>README<sp/>further<sp/>documentation<sp/>of<sp/>all<sp/>classes<sp/>and<sp/>methods<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>**doc**<sp/>folder.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Requirements</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Gazebo**<sp/>is<sp/>required<sp/>to<sp/>run<sp/>the<sp/>first<sp/>launch<sp/>file<sp/>(the<sp/>scene<sp/>definition<sp/>is<sp/>presented<sp/>in<sp/>this<sp/>package).</highlight></codeline>
+<codeline><highlight class="normal">**Coppeliasim**<sp/>is<sp/>required<sp/>to<sp/>run<sp/>the<sp/>second<sp/>launch<sp/>file<sp/>[download<sp/>link](http://www.coppeliarobotics.com/downloads.html)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Known<sp/>Issues<sp/>and<sp/>Limitations</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">If<sp/>you<sp/>try<sp/>running<sp/>both<sp/>the<sp/>Gazebo<sp/>and<sp/>CoppeliaSim<sp/>and<sp/>the<sp/>latter<sp/>seems<sp/>to<sp/>not<sp/>respond<sp/>to<sp/>the<sp/>nodes,<sp/>whilst<sp/>the<sp/>user<sp/>interface<sp/>results<sp/>frozen<sp/>after<sp/>having<sp/>told<sp/>the<sp/>system<sp/>to<sp/>run,<sp/>try<sp/>to<sp/>**kill<sp/>the<sp/>roscore<sp/>process**;<sp/>this<sp/>might<sp/>be<sp/>related<sp/>to<sp/>Gazebo<sp/>overwriting<sp/>some<sp/>values<sp/>related<sp/>to<sp/>the<sp/>simulation<sp/>(probably<sp/>simulation<sp/>time)<sp/>and<sp/>these<sp/>not<sp/>being<sp/>appropriately<sp/>&quot;cleaned&quot;<sp/>once<sp/>Gazebo<sp/>is<sp/>closed.</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

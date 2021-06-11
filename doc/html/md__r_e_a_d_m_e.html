@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>rt2_assignment1(action): Research Track 2 - assignment 1</title>
+<title>RT2_assignment1:Action: Research Track 2 - assignment 1</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,8 +21,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">rt2_assignment1(action)
+   <div id="projectname">RT2_assignment1:Action
+   &#160;<span id="projectnumber">0.6</span>
    </div>
+   <div id="projectbrief">The action implementation of a non-holonomic robot control</div>
   </td>
  </tr>
  </tbody>
@@ -72,10 +74,21 @@ Marco Gabriele Fedozzi [50833565]</h3>
 <div class="line">  action/         - action files</div>
 <div class="line">    |</div>
 <div class="line">    Pose.action           - goal definition</div>
+<div class="line">  cplScenes/      - CoppeliaSim scenes</div>
+<div class="line">    |</div>
+<div class="line">    pioneer_scene.ttt     - Pioneer p3dx scene</div>
+<div class="line">    robotnik_scene.ttt    - Robotnik Summit XL140701 scene</div>
+<div class="line">  doc/            - documentation</div>
+<div class="line">    |</div>
+<div class="line">    html/         - interactive html description</div>
+<div class="line">      |</div>
+<div class="line">      ...</div>
+<div class="line">    latex/        - static latex description</div>
+<div class="line">      |</div>
+<div class="line">      ...</div>
 <div class="line">  launch/         - launch files</div>
 <div class="line">    |</div>
 <div class="line">    sim.launch            - Gazebo simulation</div>
-<div class="line">    sim_bridge.launch     - python scripts only launch</div>
 <div class="line">    sim_coppelia.launch   - nodes only launch</div>
 <div class="line">  scripts/        - python scripts</div>
 <div class="line">    |</div>
@@ -92,10 +105,6 @@ Marco Gabriele Fedozzi [50833565]</h3>
 <div class="line">  urdf/           - robot description for Gazebo simulation</div>
 <div class="line">    |</div>
 <div class="line">    my_robot.urdf         - mobile robot description</div>
-<div class="line">  cplScenes/      - CoppeliaSim scenes</div>
-<div class="line">    |</div>
-<div class="line">    pioneer_scene.ttt     - Pioneer p3dx scene</div>
-<div class="line">    robotnik_scene.ttt    - Robotnik Summit XL140701 scene</div>
 <div class="line">  CMakeLists.txt  - CMake file</div>
 <div class="line">  README.md       - this very file</div>
 <div class="line">  package.xml     - manifest</div>
@@ -117,7 +126,7 @@ Content Explanation</h1>
 </ul>
 <p>Whilst the last two are C++ based nodes</p><ul>
 <li><b><a class="el" href="position__service_8cpp.html">position_service.cpp</a></b>: the server generating a random pose [x,y,theta] as a response to a request.</li>
-<li><b><a class="el" href="state__machine_8cpp.html">state_machine.cpp</a></b>: the FSM managing the request of a new goal pose when needed, sending it as a goal to '<a class="el" href="namespacego__to__point.html">go_to_point</a>' action server.</li>
+<li><b><a class="el" href="state__machine_8cpp.html" title="Node issuing new goals for the robot.">state_machine.cpp</a></b>: the FSM managing the request of a new goal pose when needed, sending it as a goal to '<a class="el" href="namespacego__to__point.html">go_to_point</a>' action server.</li>
 </ul>
 <hr  />
 <p>Finally, the control can be applied to a robot simulated using Coppeliasim (see <b>Requirements</b>), for which two scenes are here presented</p><ul>

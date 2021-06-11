@@ -3,6 +3,8 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+def \mbox{\hyperlink{namespacego__to__point_a839d2a1bc18a06f8f87f5a9e1903cd1c}{clbk\+\_\+set\+\_\+vel}} (msg)
+\item 
 def \mbox{\hyperlink{namespacego__to__point_a36304a9f313b0579f7fc69fa01695524}{clbk\+\_\+odom}} (msg)
 \item 
 def \mbox{\hyperlink{namespacego__to__point_a31ee48e5cae36821049b572a96b7c8be}{change\+\_\+state}} (\mbox{\hyperlink{state__machine_8cpp_a89f234133d3efe315836311cbf21c64b}{state}})
@@ -32,6 +34,8 @@ int \mbox{\hyperlink{namespacego__to__point_aa2d0ef255bcf5d5faf9ca2764730fb17}{s
 \item 
 \mbox{\hyperlink{namespacego__to__point_a64583fad586a7212c40613ec1c3e7c69}{act\+\_\+s}} = None
 \item 
+\mbox{\hyperlink{namespacego__to__point_a354fba5ca969f353a94d6131040611b9}{vel\+\_\+s}} = None
+\item 
 int \mbox{\hyperlink{namespacego__to__point_a67f95834f0959feb3facd17bc7fa2b38}{yaw\+\_\+precision\+\_\+}} = math.\+pi / 9
 \item 
 int \mbox{\hyperlink{namespacego__to__point_af74ccf49164d0478ca8343e2031d5813}{yaw\+\_\+precision\+\_\+2\+\_\+}} = math.\+pi / 90
@@ -43,8 +47,6 @@ float \mbox{\hyperlink{namespacego__to__point_a524106fc7667a0927951dfd89d52d6a7}
 float \mbox{\hyperlink{namespacego__to__point_a7bc498652ca66932e704e738b50c297b}{kp\+\_\+d}} = 0.\+2
 \item 
 float \mbox{\hyperlink{namespacego__to__point_acb4e14986fafe5cb73bb8ad0c178869d}{ub\+\_\+a}} = 0.\+6
-\item 
-float \mbox{\hyperlink{namespacego__to__point_afecad4058844db05d8321199e25b4498}{lb\+\_\+a}} = -\/0.\+5
 \item 
 float \mbox{\hyperlink{namespacego__to__point_a16c473b9e717200c483d18e66b48152a}{ub\+\_\+d}} = 0.\+6
 \end{DoxyCompactItemize}
@@ -64,7 +66,7 @@ Args:
 \end{DoxyVerb}
  
 
-Definition at line 61 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 79 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a36304a9f313b0579f7fc69fa01695524}\label{namespacego__to__point_a36304a9f313b0579f7fc69fa01695524}} 
 \index{go\_to\_point@{go\_to\_point}!clbk\_odom@{clbk\_odom}}
@@ -81,7 +83,17 @@ Args:
 \end{DoxyVerb}
  
 
-Definition at line 35 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 53 of file go\+\_\+to\+\_\+point.\+py.
+
+\mbox{\Hypertarget{namespacego__to__point_a839d2a1bc18a06f8f87f5a9e1903cd1c}\label{namespacego__to__point_a839d2a1bc18a06f8f87f5a9e1903cd1c}} 
+\index{go\_to\_point@{go\_to\_point}!clbk\_set\_vel@{clbk\_set\_vel}}
+\index{clbk\_set\_vel@{clbk\_set\_vel}!go\_to\_point@{go\_to\_point}}
+\doxysubsubsection{\texorpdfstring{clbk\_set\_vel()}{clbk\_set\_vel()}}
+{\footnotesize\ttfamily def go\+\_\+to\+\_\+point.\+clbk\+\_\+set\+\_\+vel (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_ac2587220a4ac9c845bc9c5b0b45d5835}\label{namespacego__to__point_ac2587220a4ac9c845bc9c5b0b45d5835}} 
 \index{go\_to\_point@{go\_to\_point}!done@{done}}
@@ -96,7 +108,7 @@ velocity to 0.
 \end{DoxyVerb}
  
 
-Definition at line 160 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 174 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_aa2f5974f6134483d69194c980a3a0799}\label{namespacego__to__point_aa2f5974f6134483d69194c980a3a0799}} 
 \index{go\_to\_point@{go\_to\_point}!fix\_yaw@{fix\_yaw}}
@@ -120,7 +132,7 @@ Args:
 \end{DoxyVerb}
  
 
-Definition at line 90 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 108 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_ac8579665c0fbf665f734476554fac37d}\label{namespacego__to__point_ac8579665c0fbf665f734476554fac37d}} 
 \index{go\_to\_point@{go\_to\_point}!go\_straight\_ahead@{go\_straight\_ahead}}
@@ -139,7 +151,7 @@ Args:
 \end{DoxyVerb}
  
 
-Definition at line 123 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 139 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a2203d17b7e563bee20ed4c988548df45}\label{namespacego__to__point_a2203d17b7e563bee20ed4c988548df45}} 
 \index{go\_to\_point@{go\_to\_point}!go\_to\_point@{go\_to\_point}}
@@ -161,7 +173,7 @@ Args:
 \end{DoxyVerb}
  
 
-Definition at line 174 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 188 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_ab92bd6db1ec323a4d795ed6cb40aebe1}\label{namespacego__to__point_ab92bd6db1ec323a4d795ed6cb40aebe1}} 
 \index{go\_to\_point@{go\_to\_point}!main@{main}}
@@ -171,7 +183,7 @@ Definition at line 174 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 246 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 260 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_ac688bb56fa84763ea2edefc30cae032a}\label{namespacego__to__point_ac688bb56fa84763ea2edefc30cae032a}} 
 \index{go\_to\_point@{go\_to\_point}!normalize\_angle@{normalize\_angle}}
@@ -189,7 +201,7 @@ Returns:
 \end{DoxyVerb}
  
 
-Definition at line 74 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 92 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
@@ -202,7 +214,7 @@ Definition at line 74 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 22 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 25 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a6a1e4eb20ebd4fce0fc56b0ebfd7a8d5}\label{namespacego__to__point_a6a1e4eb20ebd4fce0fc56b0ebfd7a8d5}} 
 \index{go\_to\_point@{go\_to\_point}!dist\_precision\_@{dist\_precision\_}}
@@ -212,7 +224,7 @@ Definition at line 22 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 27 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 33 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a524106fc7667a0927951dfd89d52d6a7}\label{namespacego__to__point_a524106fc7667a0927951dfd89d52d6a7}} 
 \index{go\_to\_point@{go\_to\_point}!kp\_a@{kp\_a}}
@@ -222,7 +234,7 @@ Definition at line 27 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 28 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 34 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a7bc498652ca66932e704e738b50c297b}\label{namespacego__to__point_a7bc498652ca66932e704e738b50c297b}} 
 \index{go\_to\_point@{go\_to\_point}!kp\_d@{kp\_d}}
@@ -232,17 +244,7 @@ Definition at line 28 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 29 of file go\+\_\+to\+\_\+point.\+py.
-
-\mbox{\Hypertarget{namespacego__to__point_afecad4058844db05d8321199e25b4498}\label{namespacego__to__point_afecad4058844db05d8321199e25b4498}} 
-\index{go\_to\_point@{go\_to\_point}!lb\_a@{lb\_a}}
-\index{lb\_a@{lb\_a}!go\_to\_point@{go\_to\_point}}
-\doxysubsubsection{\texorpdfstring{lb\_a}{lb\_a}}
-{\footnotesize\ttfamily float go\+\_\+to\+\_\+point.\+lb\+\_\+a = -\/0.\+5}
-
-
-
-Definition at line 31 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 35 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a91dbaab25e6080f6b5dbf82cac6ce75c}\label{namespacego__to__point_a91dbaab25e6080f6b5dbf82cac6ce75c}} 
 \index{go\_to\_point@{go\_to\_point}!position\_@{position\_}}
@@ -252,7 +254,7 @@ Definition at line 31 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 14 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 17 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a57b4090d0abcbcf0bfa2bcb9329d3036}\label{namespacego__to__point_a57b4090d0abcbcf0bfa2bcb9329d3036}} 
 \index{go\_to\_point@{go\_to\_point}!pub\_@{pub\_}}
@@ -262,7 +264,7 @@ Definition at line 14 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 19 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 22 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_aa2d0ef255bcf5d5faf9ca2764730fb17}\label{namespacego__to__point_aa2d0ef255bcf5d5faf9ca2764730fb17}} 
 \index{go\_to\_point@{go\_to\_point}!state\_@{state\_}}
@@ -272,7 +274,7 @@ Definition at line 19 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 17 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 20 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_acb4e14986fafe5cb73bb8ad0c178869d}\label{namespacego__to__point_acb4e14986fafe5cb73bb8ad0c178869d}} 
 \index{go\_to\_point@{go\_to\_point}!ub\_a@{ub\_a}}
@@ -282,7 +284,7 @@ Definition at line 17 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 30 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 36 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a16c473b9e717200c483d18e66b48152a}\label{namespacego__to__point_a16c473b9e717200c483d18e66b48152a}} 
 \index{go\_to\_point@{go\_to\_point}!ub\_d@{ub\_d}}
@@ -292,7 +294,17 @@ Definition at line 30 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 32 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 37 of file go\+\_\+to\+\_\+point.\+py.
+
+\mbox{\Hypertarget{namespacego__to__point_a354fba5ca969f353a94d6131040611b9}\label{namespacego__to__point_a354fba5ca969f353a94d6131040611b9}} 
+\index{go\_to\_point@{go\_to\_point}!vel\_s@{vel\_s}}
+\index{vel\_s@{vel\_s}!go\_to\_point@{go\_to\_point}}
+\doxysubsubsection{\texorpdfstring{vel\_s}{vel\_s}}
+{\footnotesize\ttfamily go\+\_\+to\+\_\+point.\+vel\+\_\+s = None}
+
+
+
+Definition at line 28 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_ae444f19eb2019982432760ace036ce03}\label{namespacego__to__point_ae444f19eb2019982432760ace036ce03}} 
 \index{go\_to\_point@{go\_to\_point}!yaw\_@{yaw\_}}
@@ -302,7 +314,7 @@ Definition at line 32 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 15 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 18 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_a67f95834f0959feb3facd17bc7fa2b38}\label{namespacego__to__point_a67f95834f0959feb3facd17bc7fa2b38}} 
 \index{go\_to\_point@{go\_to\_point}!yaw\_precision\_@{yaw\_precision\_}}
@@ -312,7 +324,7 @@ Definition at line 15 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 25 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 31 of file go\+\_\+to\+\_\+point.\+py.
 
 \mbox{\Hypertarget{namespacego__to__point_af74ccf49164d0478ca8343e2031d5813}\label{namespacego__to__point_af74ccf49164d0478ca8343e2031d5813}} 
 \index{go\_to\_point@{go\_to\_point}!yaw\_precision\_2\_@{yaw\_precision\_2\_}}
@@ -322,5 +334,5 @@ Definition at line 25 of file go\+\_\+to\+\_\+point.\+py.
 
 
 
-Definition at line 26 of file go\+\_\+to\+\_\+point.\+py.
+Definition at line 32 of file go\+\_\+to\+\_\+point.\+py.
 
