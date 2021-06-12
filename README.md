@@ -13,18 +13,14 @@ rt2_assignment1/
     |
     pioneer_scene.ttt     - Pioneer p3dx scene
     robotnik_scene.ttt    - Robotnik Summit XL140701 scene
-  doc/            - documentation
-    |
-    html/         - interactive html description
-      |
-      ...
-    latex/        - static latex description
-      |
-      ...
+  docs/            - documentation
   launch/         - launch files
     |
     sim.launch            - Gazebo simulation
     sim_coppelia.launch   - nodes only launch
+  notebooks/      - Jupyter Notebooks
+    |
+    interface_jptr.ipynb  - the User Interface
   scripts/        - python scripts
     |
     go_to_point.py        - pyhton script controlling the robot
@@ -90,6 +86,14 @@ In this case the Gazebo simulation will automatically start.
 path/to/ros_ws/$ roslaunch rt2_assignment1 sim_coppelia.launch
 ```
 In this case CoppeliaSim must be started separately (remember to have an instance of roscore running before launching the CoppeliaSim executable). The simulation can be either started before or after launching the nodes, but do not try to run a new simulation when the nodes have already been running on a previous one (or the system could find itself in an initial state differente from the assumed one, never being able to reach the goal).In other terms, each time the simulation is restarted the nodes should be to, and vice-versa (generally).
+
+## Notebook
+
+A Jupyter Notebook can be found under the **notebooks** folder. By executing it the robot can be controlled with a graphical user interface providing also real-time graphs of the robot behavior. More details in the notebook itself. To start the notebook execute:
+```bash
+path/to/ros_ws/src/rt2_assignment1/notebooks$ jupyter notebook --allow-root --ip 0.0.0.0
+```
+Then open web browser at `localhost:8888` and select the notebook.
 
 ## Implementation Details
 
